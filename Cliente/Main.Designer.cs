@@ -76,6 +76,7 @@
             Controls.Add(menu);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
+            MdiChildrenMinimizedAnchorBottom = false;
             Name = "Main";
             Text = "Main";
             menu.ResumeLayout(false);
