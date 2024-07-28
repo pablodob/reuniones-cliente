@@ -78,7 +78,7 @@
             MainMenuStrip = menuStrip1;
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "Main";
-            Text = "Main";
+            Text = "Gestor de reuniones";
             menu.ResumeLayout(false);
             menu.PerformLayout();
             menuStrip1.ResumeLayout(false);

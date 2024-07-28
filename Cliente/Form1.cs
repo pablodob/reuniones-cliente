@@ -70,5 +70,12 @@ namespace Cliente
                 MessageBox.Show("Seleccione un usuario para modificarlo");
             }
         }
+
+        private async void Form1_Load(object sender, EventArgs e)
+        {
+            Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
+            task.Start();
+            dataGridView1.DataSource = await task;
+        }
     }
 }

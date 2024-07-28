@@ -26,7 +26,9 @@ namespace Cliente
 
         private void botonReuniones_Click(object sender, EventArgs e)
         {
-
+            FormReuniones formReuniones = new FormReuniones();
+            formReuniones.MdiParent = this;
+            formReuniones.Show();
         }
     }
 }

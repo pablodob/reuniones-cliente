@@ -133,7 +133,8 @@
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "DataUsuario";
-            Text = "DataUsuario";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Carga de usuario nuevo";
             ResumeLayout(false);
             PerformLayout();
         }
