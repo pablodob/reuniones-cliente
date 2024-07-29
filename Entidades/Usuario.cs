@@ -9,6 +9,8 @@ namespace Entidades
         public string? Nombre { get; set; }
         public string? NombreUsuario { get; set; }
 
+        public string? Password { get; set; }
+
         [Key]
         public int Id { get; set; }
 

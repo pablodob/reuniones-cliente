@@ -94,6 +94,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(443, 177);
+            ControlBox = false;
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox2);
@@ -101,7 +102,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Login";
-            Text = "Form2";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Gestor de Reuniones";
             ResumeLayout(false);
             PerformLayout();
         }

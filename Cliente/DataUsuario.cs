@@ -34,10 +34,11 @@ namespace Cliente
             Usuario a = new Usuario();
             a.Nombre = textBox1.Text;
             a.NombreUsuario = textBox2.Text;
+            a.Password = textBox3.Text;
             if (button1.Text == "Editar")
-            { 
+            {
                 a.Id = Convert.ToInt32(label4.Text);
-                await UsuarioNegocio.Update(a); 
+                await UsuarioNegocio.Update(a);
             }
             else { await UsuarioNegocio.Add(a); }
             Dispose();

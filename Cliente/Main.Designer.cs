@@ -78,6 +78,7 @@
             MainMenuStrip = menuStrip1;
             MdiChildrenMinimizedAnchorBottom = false;
             Name = "Main";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestor de reuniones";
             menu.ResumeLayout(false);
             menu.PerformLayout();
