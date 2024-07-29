@@ -7,39 +7,38 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cliente
 {
-    public partial class DataUsuario : Form
+    public partial class DataReunion : Form
     {
-        public DataUsuario()
+        public DataReunion()
         {
             InitializeComponent();
         }
-        public DataUsuario(Usuario usuarioAModificar)
+
+        public DataReunion(Reunion reunionAModificar)
         {
             InitializeComponent();
             button1.Text = "Editar";
-            textBox1.Text = usuarioAModificar.Nombre;
-            textBox2.Text = usuarioAModificar.NombreUsuario;
-            label4.Text = Convert.ToString(usuarioAModificar.Id);
+            textBox1.Text = reunionAModificar.Titulo;
+            label3.Text = Convert.ToString(reunionAModificar.Id);
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            Usuario a = new Usuario();
-            a.Nombre = textBox1.Text;
-            a.NombreUsuario = textBox2.Text;
+            Reunion a = new Reunion();
+            a.Titulo = textBox1.Text;
+            //a.Id = textBox2.Text;
             if (button1.Text == "Editar")
-            { 
-                a.Id = Convert.ToInt32(label4.Text);
-                await UsuarioNegocio.Update(a); 
+            {
+                a.Id = Convert.ToInt32(label3.Text);
+                await ReunionNegocio.Update(a); 
             }
-            else { await UsuarioNegocio.Add(a); }
+            else { await ReunionNegocio.Add(a); }
             Dispose();
         }
 

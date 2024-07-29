@@ -29,19 +29,22 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            listarbutton = new Button();
             button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
-            label1 = new Label();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(listarbutton);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button2);
@@ -51,6 +54,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(168, 314);
             panel1.TabIndex = 0;
+            // 
+            // listarbutton
+            // 
+            listarbutton.Location = new Point(33, 219);
+            listarbutton.Name = "listarbutton";
+            listarbutton.Size = new Size(105, 23);
+            listarbutton.TabIndex = 5;
+            listarbutton.Text = "Listar reuniones";
+            listarbutton.UseVisualStyleBackColor = true;
+            listarbutton.Click += button5_Click;
             // 
             // button4
             // 
@@ -94,21 +107,21 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(label1);
+            panel2.Controls.Add(dataGridView1);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(168, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(411, 314);
             panel2.TabIndex = 1;
             // 
-            // label1
+            // dataGridView1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(221, 114);
-            label1.Name = "label1";
-            label1.Size = new Size(135, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Aca se ven las reuniones";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(411, 314);
+            dataGridView1.TabIndex = 0;
             // 
             // FormReuniones
             // 
@@ -121,9 +134,10 @@
             Name = "FormReuniones";
             Text = "Reuniones";
             WindowState = FormWindowState.Maximized;
+            Load += FormReuniones_Load_1;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -134,7 +148,8 @@
         private Button button3;
         private Button button2;
         private Button button1;
-        private Label label1;
         private Panel panel2;
+        private DataGridView dataGridView1;
+        private Button listarbutton;
     }
 }
