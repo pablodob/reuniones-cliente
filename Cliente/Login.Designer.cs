@@ -34,6 +34,7 @@
             textBox2 = new TextBox();
             button1 = new Button();
             button2 = new Button();
+            linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // label1
@@ -89,12 +90,24 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(174, 169);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(64, 15);
+            linkLabel1.TabIndex = 6;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Registrarse";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(443, 177);
+            ClientSize = new Size(443, 193);
             ControlBox = false;
+            Controls.Add(linkLabel1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox2);
@@ -116,5 +129,6 @@
         private TextBox textBox2;
         private Button button1;
         private Button button2;
+        private LinkLabel linkLabel1;
     }
 }

@@ -64,20 +64,22 @@
             label2.Location = new Point(25, 60);
             label2.Name = "label2";
             label2.Size = new Size(47, 15);
-            label2.TabIndex = 2;
+            label2.TabIndex = 3;
             label2.Text = "Usuario";
             // 
             // textBox1
             // 
             textBox1.Location = new Point(118, 21);
             textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Nombre";
             textBox1.Size = new Size(168, 23);
-            textBox1.TabIndex = 3;
+            textBox1.TabIndex = 2;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(118, 57);
             textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "Usuario";
             textBox2.Size = new Size(168, 23);
             textBox2.TabIndex = 4;
             // 
@@ -86,7 +88,7 @@
             button1.Location = new Point(66, 169);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
+            button1.TabIndex = 9;
             button1.Text = "Aceptar";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -96,7 +98,7 @@
             button2.Location = new Point(211, 169);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
-            button2.TabIndex = 6;
+            button2.TabIndex = 10;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
@@ -104,7 +106,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(25, 101);
+            label3.Location = new Point(25, 129);
             label3.Name = "label3";
             label3.Size = new Size(17, 15);
             label3.TabIndex = 7;
@@ -113,7 +115,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(118, 101);
+            label4.Location = new Point(118, 129);
             label4.Name = "label4";
             label4.Size = new Size(0, 15);
             label4.TabIndex = 8;
@@ -121,18 +123,20 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(25, 132);
+            label5.Location = new Point(25, 96);
             label5.Name = "label5";
             label5.Size = new Size(67, 15);
-            label5.TabIndex = 9;
+            label5.TabIndex = 5;
             label5.Text = "Contraseña";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(118, 124);
+            textBox3.Location = new Point(118, 93);
             textBox3.Name = "textBox3";
+            textBox3.PlaceholderText = "Contraseña";
             textBox3.Size = new Size(168, 23);
-            textBox3.TabIndex = 10;
+            textBox3.TabIndex = 6;
+            textBox3.UseSystemPasswordChar = true;
             // 
             // DataUsuario
             // 

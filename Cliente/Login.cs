@@ -31,7 +31,8 @@ namespace Cliente
             a.NombreUsuario = textBox1.Text;
             a.Password = textBox2.Text;
             String? token = await LoginNegocio.Send(a);
-            if (token != null) { 
+            if (token != null)
+            {
                 //MessageBox.Show("Ingreso correcto: "+  token, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Hide();
                 new Main().ShowDialog();
@@ -39,5 +40,9 @@ namespace Cliente
             Dispose();
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new DataUsuario().ShowDialog();
+        }
     }
 }

@@ -34,11 +34,19 @@
             label2 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            label4 = new Label();
+            button3 = new Button();
+            button4 = new Button();
+            panel1 = new Panel();
+            label6 = new Label();
+            label5 = new Label();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(72, 111);
+            button1.Location = new Point(70, 267);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -48,7 +56,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(185, 111);
+            button2.Location = new Point(171, 267);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -78,7 +86,7 @@
             // 
             textBox1.Location = new Point(118, 21);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(168, 23);
+            textBox1.Size = new Size(180, 23);
             textBox1.TabIndex = 4;
             // 
             // label3
@@ -86,15 +94,87 @@
             label3.AutoSize = true;
             label3.Location = new Point(118, 59);
             label3.Name = "label3";
-            label3.Size = new Size(38, 15);
+            label3.Size = new Size(0, 15);
             label3.TabIndex = 5;
-            label3.Text = "label3";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(25, 112);
+            dateTimePicker1.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(273, 23);
+            dateTimePicker1.TabIndex = 6;
+            dateTimePicker1.Value = new DateTime(2024, 7, 29, 18, 14, 56, 0);
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(24, 85);
+            label4.Name = "label4";
+            label4.Size = new Size(101, 15);
+            label4.TabIndex = 7;
+            label4.Text = "Fecha a realizarse:";
+            // 
+            // button3
+            // 
+            button3.Enabled = false;
+            button3.Location = new Point(27, 62);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 8;
+            button3.Text = "Realizada";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.Enabled = false;
+            button4.Location = new Point(128, 62);
+            button4.Name = "button4";
+            button4.Size = new Size(75, 23);
+            button4.TabIndex = 9;
+            button4.Text = "Cancelada";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button4);
+            panel1.Location = new Point(43, 152);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(237, 100);
+            panel1.TabIndex = 10;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(95, 32);
+            label6.Name = "label6";
+            label6.Size = new Size(0, 15);
+            label6.TabIndex = 11;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(7, 11);
+            label5.Name = "label5";
+            label5.Size = new Size(152, 15);
+            label5.TabIndex = 10;
+            label5.Text = "Estado actual de la reunión:";
             // 
             // DataReunion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(345, 171);
+            ClientSize = new Size(331, 315);
+            Controls.Add(panel1);
+            Controls.Add(label4);
+            Controls.Add(dateTimePicker1);
             Controls.Add(label3);
             Controls.Add(textBox1);
             Controls.Add(label2);
@@ -104,6 +184,8 @@
             Name = "DataReunion";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Cargar una reunion nueva";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -116,5 +198,12 @@
         private Label label2;
         private TextBox textBox1;
         private Label label3;
+        private DateTimePicker dateTimePicker1;
+        private Label label4;
+        private Button button3;
+        private Button button4;
+        private Panel panel1;
+        private Label label6;
+        private Label label5;
     }
 }

@@ -26,7 +26,9 @@ namespace Cliente
             button1.Text = "Editar";
             textBox1.Text = usuarioAModificar.Nombre;
             textBox2.Text = usuarioAModificar.NombreUsuario;
+            //textBox3.Text = usuarioAModificar.Password;
             label4.Text = Convert.ToString(usuarioAModificar.Id);
+            //textBox3.Enabled = false;
         }
 
         private async void button1_Click(object sender, EventArgs e)
