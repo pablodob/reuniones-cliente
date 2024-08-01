@@ -28,6 +28,8 @@ namespace Cliente
             textBox1.Text = reunionAModificar.Titulo;
             label3.Text = Convert.ToString(reunionAModificar.Id);
             label6.Text = reunionAModificar.Estado;
+            textBox2.Text = reunionAModificar.Minuta;
+            textBox3.Text = reunionAModificar.Temas;
             if (reunionAModificar.Estado == "Programada")
             {
                 button3.Enabled = true;
@@ -39,6 +41,8 @@ namespace Cliente
         {
             Reunion a = new Reunion();
             a.Titulo = textBox1.Text;
+            a.Minuta = textBox2.Text;
+            a.Temas = textBox3.Text;
             if (button1.Text == "Editar")
             {
                 a.Id = Convert.ToInt32(label3.Text);

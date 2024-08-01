@@ -122,6 +122,11 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(411, 314);
             dataGridView1.TabIndex = 0;
+
+            this.dataGridView1.SelectionMode =
+            DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.MultiSelect = false;
+
             // 
             // FormReuniones
             // 
@@ -151,5 +156,6 @@
         private Panel panel2;
         private DataGridView dataGridView1;
         private Button listarbutton;
+
     }
 }
