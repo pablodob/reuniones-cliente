@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using Negocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,9 +17,18 @@ namespace Cliente
 {
     public partial class DataReunion : Form
     {
+        List<Usuario> invitados = new List<Usuario>();
+
+
         public DataReunion()
         {
             InitializeComponent();
+            CargarComboBox();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Add("Nombre", "Nombre");
+            dataGridView1.Columns.Add("NombreUsuario", "Usuario");
+            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
         }
 
         public DataReunion(Reunion reunionAModificar)
@@ -28,11 +38,31 @@ namespace Cliente
             textBox1.Text = reunionAModificar.Titulo;
             label3.Text = Convert.ToString(reunionAModificar.Id);
             label6.Text = reunionAModificar.Estado;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Add("Nombre", "Nombre");
+            dataGridView1.Columns.Add("NombreUsuario", "Usuario");
+            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
             if (reunionAModificar.Estado == "Programada")
             {
                 button3.Enabled = true;
                 button4.Enabled = true;
             }
+            CargarComboBox();
+        }
+
+        public IEnumerable<Usuario> cargarTabla()
+        {
+            return UsuarioNegocio.GetAll().Result;
+        }
+
+        private async void CargarComboBox()
+        {
+            Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
+            task.Start();
+            comboBox1.DataSource = await task;
+            comboBox1.DisplayMember = "Nombre";
+            comboBox1.ValueMember = "Id";
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -45,10 +75,10 @@ namespace Cliente
                 a.Estado = label6.Text;
                 await ReunionNegocio.Update(a);
             }
-            else 
-            { 
+            else
+            {
                 a.Estado = "Programada";
-                await ReunionNegocio.Add(a); 
+                await ReunionNegocio.Add(a);
             }
             Dispose();
         }
@@ -58,7 +88,7 @@ namespace Cliente
             Dispose();
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             label6.Text = "Realizada";
         }
@@ -67,5 +97,27 @@ namespace Cliente
         {
             label6.Text = "Cancelada";
         }
+
+        /*public IEnumerable<Reunion> cargarInvitados()
+        {
+            lista = ReunionNegocio.GetAll();
+            return lista.Result;
+        }*/
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Usuario invitado = (Usuario)comboBox1.SelectedItem;
+            MessageBox.Show("El usuario de nombre " + invitado.Nombre + " sera invitado a la reunion");
+            invitados.Add(invitado);
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = invitados;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = invitados;
+        }
+
     }
 }

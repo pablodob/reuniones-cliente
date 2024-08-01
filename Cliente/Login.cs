@@ -36,8 +36,15 @@ namespace Cliente
                 //MessageBox.Show("Ingreso correcto: "+  token, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Hide();
                 new Main().ShowDialog();
+                Dispose();
             }
-            Dispose();
+            else
+            {
+                MessageBox.Show("Usuario o contrasena incorrecto", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBox1.Text = "";
+                textBox2.Text = "";
+            }
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

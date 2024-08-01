@@ -41,12 +41,19 @@
             panel1 = new Panel();
             label6 = new Label();
             label5 = new Label();
+            colorDialog1 = new ColorDialog();
+            comboBox1 = new ComboBox();
+            dataGridView1 = new DataGridView();
+            panel2 = new Panel();
+            button5 = new Button();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(70, 267);
+            button1.Location = new Point(70, 437);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -56,7 +63,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(171, 267);
+            button2.Location = new Point(171, 437);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -99,11 +106,12 @@
             // 
             // dateTimePicker1
             // 
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
             dateTimePicker1.Location = new Point(25, 112);
             dateTimePicker1.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(273, 23);
+            dateTimePicker1.Size = new Size(302, 23);
             dateTimePicker1.TabIndex = 6;
             dateTimePicker1.Value = new DateTime(2024, 7, 29, 18, 14, 56, 0);
             // 
@@ -167,11 +175,47 @@
             label5.TabIndex = 10;
             label5.Text = "Estado actual de la reunión:";
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(13, 13);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(169, 23);
+            comboBox1.TabIndex = 11;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(13, 52);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(273, 106);
+            dataGridView1.TabIndex = 12;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(button5);
+            panel2.Controls.Add(comboBox1);
+            panel2.Location = new Point(20, 261);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(295, 170);
+            panel2.TabIndex = 13;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(198, 13);
+            button5.Name = "button5";
+            button5.Size = new Size(88, 23);
+            button5.TabIndex = 0;
+            button5.Text = "Invitar";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // DataReunion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 315);
+            ClientSize = new Size(345, 467);
             Controls.Add(panel1);
             Controls.Add(label4);
             Controls.Add(dateTimePicker1);
@@ -181,11 +225,14 @@
             Controls.Add(label1);
             Controls.Add(button2);
             Controls.Add(button1);
+            Controls.Add(panel2);
             Name = "DataReunion";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Cargar una reunion nueva";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,5 +252,10 @@
         private Panel panel1;
         private Label label6;
         private Label label5;
+        private ColorDialog colorDialog1;
+        private ComboBox comboBox1;
+        private DataGridView dataGridView1;
+        private Panel panel2;
+        private Button button5;
     }
 }
