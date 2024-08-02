@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class LoginNegocio
     {
-        static readonly string defaultURL = "http://localhost:5275/api/Login/login"; 
+        static readonly string defaultURL = "http://localhost:5275/api/Login/login";
 
         public async static Task<String?> Send(UsuarioLogin usuario)
         {
