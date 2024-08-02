@@ -57,7 +57,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(70, 437);
+            button1.Location = new Point(70, 585);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -67,7 +67,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(171, 437);
+            button2.Location = new Point(171, 585);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -190,7 +190,7 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(13, 52);
+            dataGridView1.Location = new Point(13, 57);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(273, 106);
             dataGridView1.TabIndex = 12;
@@ -200,7 +200,7 @@
             panel2.Controls.Add(dataGridView1);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(comboBox1);
-            panel2.Location = new Point(20, 261);
+            panel2.Location = new Point(20, 390);
             panel2.Name = "panel2";
             panel2.Size = new Size(295, 170);
             panel2.TabIndex = 13;
@@ -254,7 +254,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 420);
+            ClientSize = new Size(331, 616);
             Controls.Add(textBox3);
             Controls.Add(label8);
             Controls.Add(textBox2);
