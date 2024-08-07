@@ -1,5 +1,10 @@
 ﻿using Entidades;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Negocio
 {
@@ -29,6 +34,13 @@ namespace Negocio
         {
             var response = await Conexion.Instancia.Cliente.PutAsJsonAsync(defaultURL + usuario.Id, usuario);
             return response.IsSuccessStatusCode;
+        }
+
+        public async static Task<Usuario> GetUser(long id)
+        {
+            var response = await Conexion.Instancia.Cliente.GetStringAsync(defaultURL + id);
+            var data = JsonConvert.DeserializeObject<Usuario>(response);
+            return data;
         }
     }
 }

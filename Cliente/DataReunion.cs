@@ -27,8 +27,10 @@ namespace Cliente
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
+            dataGridView1.Columns.Add("Id", "Id");
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
+            dataGridView1.Columns["Id"].DataPropertyName = "Id";
         }
 
         public DataReunion(Reunion reunionAModificar)
@@ -41,10 +43,12 @@ namespace Cliente
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
+            dataGridView1.Columns.Add("Id", "Id");
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
             textBox2.Text = reunionAModificar.Minuta;
             textBox3.Text = reunionAModificar.Temas;
+            dataGridView1.Columns["Id"].DataPropertyName = "Id";
             if (reunionAModificar.Estado == "Programada")
             {
                 button3.Enabled = true;
@@ -84,6 +88,18 @@ namespace Cliente
                 a.Estado = "Programada";
                 await ReunionNegocio.Add(a);
             }
+
+            /*foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                string IdString = row.Cells["Id"].Value.ToString();
+                long IdUser = Convert.ToInt32(IdString);
+                Usuario user = await UsuarioNegocio.GetUser(IdUser);
+                ReunionUsuario ru = new ReunionUsuario();
+                ru.ReunionId = a;
+                ru.UsuarioId = user;
+                ru.Estado = "Invitado";
+                await ReunionUsuarioNegocio.Add(ru);
+            }*/
             Dispose();
         }
 
@@ -102,16 +118,10 @@ namespace Cliente
             label6.Text = "Cancelada";
         }
 
-        /*public IEnumerable<Reunion> cargarInvitados()
-        {
-            lista = ReunionNegocio.GetAll();
-            return lista.Result;
-        }*/
-
         private void button5_Click(object sender, EventArgs e)
         {
             Usuario invitado = (Usuario)comboBox1.SelectedItem;
-            MessageBox.Show("El usuario de nombre " + invitado.Nombre + " sera invitado a la reunion");
+            //MessageBox.Show("El usuario de nombre " + invitado.Nombre + " sera invitado a la reunion");
             invitados.Add(invitado);
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = invitados;
