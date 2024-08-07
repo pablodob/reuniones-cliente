@@ -11,6 +11,8 @@ namespace Entidades
     {
         public string? Titulo { get; set; } //Inventando hasta que este todo
         public string? Estado { get; set; }
+        public string? Minuta { get; set; }
+        public string? Temas { get; set; }
         [Key]
         public int Id { get; set; }
     }

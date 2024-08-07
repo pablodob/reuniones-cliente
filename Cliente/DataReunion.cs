@@ -46,6 +46,8 @@ namespace Cliente
             dataGridView1.Columns.Add("Id", "Id");
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
+            textBox2.Text = reunionAModificar.Minuta;
+            textBox3.Text = reunionAModificar.Temas;
             dataGridView1.Columns["Id"].DataPropertyName = "Id";
             if (reunionAModificar.Estado == "Programada")
             {
@@ -73,6 +75,8 @@ namespace Cliente
         {
             Reunion a = new Reunion();
             a.Titulo = textBox1.Text;
+            a.Minuta = textBox2.Text;
+            a.Temas = textBox3.Text;
             if (button1.Text == "Editar")
             {
                 a.Id = Convert.ToInt32(label3.Text);

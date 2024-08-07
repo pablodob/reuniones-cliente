@@ -46,6 +46,10 @@
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
             button5 = new Button();
+            label7 = new Label();
+            textBox2 = new TextBox();
+            label8 = new Label();
+            textBox3 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -153,7 +157,7 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button4);
-            panel1.Location = new Point(43, 152);
+            panel1.Location = new Point(43, 141);
             panel1.Name = "panel1";
             panel1.Size = new Size(237, 100);
             panel1.TabIndex = 10;
@@ -211,11 +215,50 @@
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(24, 300);
+            label7.Name = "label7";
+            label7.Size = new Size(108, 15);
+            label7.TabIndex = 11;
+            label7.Text = "Minuta de reunión:";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(43, 318);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "Escriba aquí la minuta de la reunion realizada";
+            textBox2.Size = new Size(237, 64);
+            textBox2.TabIndex = 12;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(24, 243);
+            label8.Name = "label8";
+            label8.Size = new Size(83, 15);
+            label8.TabIndex = 13;
+            label8.Text = "Temas a tratar:";
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(43, 261);
+            textBox3.Multiline = true;
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(237, 36);
+            textBox3.TabIndex = 14;
+            // 
             // DataReunion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(345, 467);
+            ClientSize = new Size(331, 420);
+            Controls.Add(textBox3);
+            Controls.Add(label8);
+            Controls.Add(textBox2);
+            Controls.Add(label7);
             Controls.Add(panel1);
             Controls.Add(label4);
             Controls.Add(dateTimePicker1);
@@ -257,5 +300,9 @@
         private DataGridView dataGridView1;
         private Panel panel2;
         private Button button5;
+        private Label label7;
+        private TextBox textBox2;
+        private Label label8;
+        private TextBox textBox3;
     }
 }

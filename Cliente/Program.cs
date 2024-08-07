@@ -12,6 +12,7 @@ namespace Cliente
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new Main());
+            //Application.Run(new FormReuniones());
             Application.Run(new Login());
         }
     }
