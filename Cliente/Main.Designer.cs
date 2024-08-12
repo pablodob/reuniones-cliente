@@ -32,6 +32,7 @@
             menuStrip1 = new MenuStrip();
             botonReuniones = new ToolStripMenuItem();
             botonUsuarios = new ToolStripMenuItem();
+            label1 = new Label();
             menu.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -68,11 +69,22 @@
             botonUsuarios.Text = "Usuarios";
             botonUsuarios.Click += botonUsuarios_Click;
             // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom;
+            label1.AutoSize = true;
+            label1.Location = new Point(532, 426);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Datos usuario";
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Controls.Add(menu);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip1;
@@ -85,6 +97,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -93,5 +106,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem botonReuniones;
         private ToolStripMenuItem botonUsuarios;
+        private Label label1;
     }
 }
