@@ -9,7 +9,7 @@ namespace Negocio
 {
     public class LoginNegocio
     {
-        static readonly string defaultURL = "http://localhost:5275/api/Login/login";
+        static readonly string defaultURL = "http://localhost:5275/api/Login/";
 
         public async static Task<Boolean> Add(UsuarioLogin usuario)
         {
@@ -19,7 +19,7 @@ namespace Negocio
 
         public async static Task<String?> Send(UsuarioLogin usuario)
         {
-            var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL, usuario);
+            var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL + "login/", usuario);
             string? token;
             try
             {
@@ -36,6 +36,12 @@ namespace Negocio
                 token = null;
             }
             return token;
+        }
+
+        public async static Task<Boolean> Add(Usuario usuario)
+        {
+            var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL + "signup/", usuario);
+            return response.IsSuccessStatusCode;
         }
 
 

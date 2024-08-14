@@ -35,7 +35,8 @@ namespace Cliente
             {
                 //MessageBox.Show("Ingreso correcto: "+  token, "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Hide();
-                new Main().ShowDialog();
+                Main main = new Main(token);
+                main.ShowDialog();
                 Dispose();
             }
             else

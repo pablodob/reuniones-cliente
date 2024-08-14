@@ -3,11 +3,11 @@ using Entidades;
 
 namespace Cliente
 {
-    public partial class Form1 : Form
+    public partial class FormUsuarios : Form
     {
         private Task<IEnumerable<Usuario>>? lista;
 
-        public Form1()
+        public FormUsuarios()
         {
             InitializeComponent();
         }

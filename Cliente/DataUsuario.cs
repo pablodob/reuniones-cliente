@@ -19,14 +19,17 @@ namespace Cliente
         public DataUsuario()
         {
             InitializeComponent();
+            label4.Visible = false;
         }
+
         public DataUsuario(Usuario usuarioAModificar)
         {
             InitializeComponent();
             button1.Text = "Editar";
             textBox1.Text = usuarioAModificar.Nombre;
             textBox2.Text = usuarioAModificar.NombreUsuario;
-            //textBox3.Text = usuarioAModificar.Password;
+            label5.Visible = false;
+            textBox3.Visible = false;
             label4.Text = Convert.ToString(usuarioAModificar.Id);
             //textBox3.Enabled = false;
         }
@@ -42,7 +45,9 @@ namespace Cliente
                 a.Id = Convert.ToInt32(label4.Text);
                 await UsuarioNegocio.Update(a);
             }
-            else { await UsuarioNegocio.Add(a); }
+            else { 
+                await LoginNegocio.Add(a);
+            }
             Dispose();
         }
 
@@ -50,5 +55,6 @@ namespace Cliente
         {
             Dispose();
         }
+
     }
 }

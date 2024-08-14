@@ -20,6 +20,18 @@ namespace Cliente
         {
             InitializeComponent();
         }
+
+        public FormReuniones(bool isAdmin)
+        {
+            InitializeComponent();
+            if (!isAdmin)
+            {
+                button1.Visible = false;
+                button3.Visible = false;
+                button4.Visible = false;
+            }
+        }
+
         public IEnumerable<Reunion> cargarTabla()
         {
             lista = ReunionNegocio.GetAll();
@@ -77,5 +89,6 @@ namespace Cliente
             task.Start();
             dataGridView1.DataSource = await task;
         }
+
     }
 }

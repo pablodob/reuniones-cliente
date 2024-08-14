@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,26 +8,73 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Cliente
 {
     public partial class Main : Form
     {
-        public Main()
+        private string? Token { get; set; }
+        private long? userId { get; set; }
+        private string? userName { get; set; }
+        private bool isAdmin { get; set; }
+
+        string securityKey = "LoshermanosseanunidosporqueesaeslaleyprimerA";
+        public Main(string? token)
         {
+            this.Token = token;
             InitializeComponent();
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero
+            };
+
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+
+            // El payload del token está en principal.Claims
+            userId = long.Parse(principal.FindFirst("usuarioId")?.Value);
+            userName = principal.FindFirst("nombreUsuario")?.Value;
+            string strisAdmin = principal.FindFirst("isAdmin")?.Value;
+            if (strisAdmin == "1")
+            {
+                isAdmin = true;
+            }
+            else
+            {
+                isAdmin = false;
+            }
+
+            string dataInfo = "Id: " + userId.ToString() + " | Usuario: " + userName + " | Rol: ";
+            if (isAdmin)
+            {
+                dataInfo += "Administrador";
+            }
+            else
+            {
+                dataInfo += "Usuario";
+                this.botonUsuarios.Visible = false;
+            }
+            this.label1.Text = dataInfo;
         }
 
         private void botonUsuarios_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            FormUsuarios form1 = new FormUsuarios();
             form1.MdiParent = this;
             form1.Show();
         }
 
         private void botonReuniones_Click(object sender, EventArgs e)
         {
-            FormReuniones formReuniones = new FormReuniones();
+            FormReuniones formReuniones = new FormReuniones(isAdmin);
             formReuniones.MdiParent = this;
             formReuniones.Show();
         }

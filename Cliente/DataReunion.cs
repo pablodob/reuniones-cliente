@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Security;
@@ -86,20 +87,21 @@ namespace Cliente
             else
             {
                 a.Estado = "Programada";
-                await ReunionNegocio.Add(a);
+                a = await ReunionNegocio.Add(a);
             }
 
-            /*foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 string IdString = row.Cells["Id"].Value.ToString();
-                long IdUser = Convert.ToInt32(IdString);
-                Usuario user = await UsuarioNegocio.GetUser(IdUser);
+                int IdUser = Convert.ToInt32(IdString);
+                //Usuario user = await UsuarioNegocio.GetUser(IdUser);
                 ReunionUsuario ru = new ReunionUsuario();
-                ru.ReunionId = a;
-                ru.UsuarioId = user;
+                ru.ReunionId = a.Id;
+                ru.UsuarioId = IdUser;
                 ru.Estado = "Invitado";
-                await ReunionUsuarioNegocio.Add(ru);
-            }*/
+                var ret = await ReunionUsuarioNegocio.Add(ru);
+                Debug.WriteLine(ret);
+            }
             Dispose();
         }
 
