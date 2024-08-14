@@ -19,9 +19,6 @@ namespace Cliente
         private long? userId { get; set; }
         private string? userName { get; set; }
         private bool isAdmin { get; set; }
-        private string? Role { get; set; }
-
-
 
         string securityKey = "LoshermanosseanunidosporqueesaeslaleyprimerA";
         public Main(string? token)
@@ -60,8 +57,10 @@ namespace Cliente
             {
                 dataInfo += "Administrador";
             }
-            else {
+            else
+            {
                 dataInfo += "Usuario";
+                this.botonUsuarios.Visible = false;
             }
             this.label1.Text = dataInfo;
         }
@@ -75,10 +74,9 @@ namespace Cliente
 
         private void botonReuniones_Click(object sender, EventArgs e)
         {
-            FormReuniones formReuniones = new FormReuniones();
+            FormReuniones formReuniones = new FormReuniones(isAdmin);
             formReuniones.MdiParent = this;
             formReuniones.Show();
         }
-
     }
 }

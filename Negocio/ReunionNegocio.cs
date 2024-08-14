@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,10 +25,18 @@ namespace Negocio
             return response.IsSuccessStatusCode;
         }
 
-        public async static Task<Boolean> Add(Reunion reunion)
+        public async static Task<Reunion?> Add(Reunion reunion)
         {
             var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL, reunion);
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode)
+            {
+                var reunionActualizada = await response.Content.ReadFromJsonAsync<Reunion>();
+                return reunionActualizada;
+            }
+            else
+            {
+                throw new Exception("Error al agregar la reunión");
+            }
         }
 
         public async static Task<Boolean> Update(Reunion reunion)

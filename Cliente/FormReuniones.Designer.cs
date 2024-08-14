@@ -119,14 +119,11 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(411, 314);
             dataGridView1.TabIndex = 0;
-
-            this.dataGridView1.SelectionMode =
-            DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.MultiSelect = false;
-
             // 
             // FormReuniones
             // 

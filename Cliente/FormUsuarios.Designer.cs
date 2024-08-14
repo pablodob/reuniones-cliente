@@ -45,13 +45,11 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(412, 314);
             dataGridView1.TabIndex = 0;
-
-            this.dataGridView1.SelectionMode =
-            DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.MultiSelect = false;
             // 
             // button1
             // 
@@ -115,7 +113,7 @@
             panel2.Size = new Size(412, 314);
             panel2.TabIndex = 6;
             // 
-            // Form1
+            // FormUsuarios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -123,7 +121,7 @@
             ControlBox = false;
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "Form1";
+            Name = "FormUsuarios";
             Text = "Usuarios";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
