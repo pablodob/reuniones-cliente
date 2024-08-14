@@ -11,6 +11,12 @@ namespace Negocio
     {
         static readonly string defaultURL = "http://localhost:5275/api/Login/login";
 
+        public async static Task<Boolean> Add(UsuarioLogin usuario)
+        {
+            var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL, usuario);
+            return response.IsSuccessStatusCode;
+        }
+
         public async static Task<String?> Send(UsuarioLogin usuario)
         {
             var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL, usuario);
