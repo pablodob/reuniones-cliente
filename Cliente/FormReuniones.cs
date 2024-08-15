@@ -14,6 +14,7 @@ namespace Cliente
 {
     public partial class FormReuniones : Form
     {
+        private int? usuarioId {  get; set; }
         private Task<IEnumerable<Reunion>>? lista;
 
         public FormReuniones()
@@ -21,7 +22,7 @@ namespace Cliente
             InitializeComponent();
         }
 
-        public FormReuniones(bool isAdmin)
+        public FormReuniones(bool isAdmin, int? userId)
         {
             InitializeComponent();
             if (!isAdmin)
@@ -30,6 +31,7 @@ namespace Cliente
                 button3.Visible = false;
                 button4.Visible = false;
             }
+            usuarioId = userId;
         }
 
         public IEnumerable<Reunion> cargarTabla()
@@ -46,7 +48,16 @@ namespace Cliente
 
         private void button2_Click(object sender, EventArgs e) // ver detalles de una reunion
         {
-
+            if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
+            {
+                int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
+                new DataReunionVer(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
+                button5_Click(sender, e);
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una reunion para modificarla");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e) // editar una reunion
@@ -54,7 +65,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataReunion(lista.Result.ToList()[filaSeleccionada]).ShowDialog();
+                new DataReunionVer(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
                 button5_Click(sender, e);
             }
             else

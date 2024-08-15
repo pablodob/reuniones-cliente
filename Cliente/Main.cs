@@ -16,7 +16,7 @@ namespace Cliente
     public partial class Main : Form
     {
         private string? Token { get; set; }
-        private long? userId { get; set; }
+        private int? userId { get; set; }
         private string? userName { get; set; }
         private bool isAdmin { get; set; }
 
@@ -40,7 +40,7 @@ namespace Cliente
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
             // El payload del token está en principal.Claims
-            userId = long.Parse(principal.FindFirst("usuarioId")?.Value);
+            userId = int.Parse(principal.FindFirst("usuarioId")?.Value);
             userName = principal.FindFirst("nombreUsuario")?.Value;
             string strisAdmin = principal.FindFirst("isAdmin")?.Value;
             if (strisAdmin == "1")
@@ -74,7 +74,7 @@ namespace Cliente
 
         private void botonReuniones_Click(object sender, EventArgs e)
         {
-            FormReuniones formReuniones = new FormReuniones(isAdmin);
+            FormReuniones formReuniones = new FormReuniones(isAdmin, userId);
             formReuniones.MdiParent = this;
             formReuniones.Show();
         }

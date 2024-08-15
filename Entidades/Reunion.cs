@@ -13,6 +13,7 @@ namespace Entidades
         public string? Estado { get; set; }
         public string? Minuta { get; set; }
         public string? Temas { get; set; }
+        public DateTime? FechaHora { get; set; }
         [Key]
         public int Id { get; set; }
     }

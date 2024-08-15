@@ -40,21 +40,14 @@ namespace Cliente
             button1.Text = "Editar";
             textBox1.Text = reunionAModificar.Titulo;
             label3.Text = Convert.ToString(reunionAModificar.Id);
-            label6.Text = reunionAModificar.Estado;
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
             dataGridView1.Columns.Add("Id", "Id");
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
-            textBox2.Text = reunionAModificar.Minuta;
             textBox3.Text = reunionAModificar.Temas;
             dataGridView1.Columns["Id"].DataPropertyName = "Id";
-            if (reunionAModificar.Estado == "Programada")
-            {
-                button3.Enabled = true;
-                button4.Enabled = true;
-            }
             CargarComboBox();
         }
 
@@ -76,20 +69,11 @@ namespace Cliente
         {
             Reunion a = new Reunion();
             a.Titulo = textBox1.Text;
-            a.Minuta = textBox2.Text;
             a.Temas = textBox3.Text;
-            if (button1.Text == "Editar")
-            {
-                a.Id = Convert.ToInt32(label3.Text);
-                a.Estado = label6.Text;
-                await ReunionNegocio.Update(a);
-            }
-            else
-            {
-                a.Estado = "Programada";
-                a = await ReunionNegocio.Add(a);
-            }
-
+            a.Estado = "Programada";
+            a.FechaHora = dateTimePicker1.Value;
+            a = await ReunionNegocio.Add(a);
+ 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 string IdString = row.Cells["Id"].Value.ToString();
@@ -100,7 +84,6 @@ namespace Cliente
                 ru.UsuarioId = IdUser;
                 ru.Estado = "Invitado";
                 var ret = await ReunionUsuarioNegocio.Add(ru);
-                Debug.WriteLine(ret);
             }
             Dispose();
         }
@@ -108,16 +91,6 @@ namespace Cliente
         private void button2_Click(object sender, EventArgs e)
         {
             Dispose();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            label6.Text = "Realizada";
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            label6.Text = "Cancelada";
         }
 
         private void button5_Click(object sender, EventArgs e)

@@ -18,4 +18,10 @@
     <ProjectReference Include="..\Negocio\Negocio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="DataReunionVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
