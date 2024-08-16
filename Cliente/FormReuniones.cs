@@ -65,8 +65,15 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataReunionVer(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
-                button5_Click(sender, e);
+                if (lista.Result.ToList()[filaSeleccionada].FechaHora < DateTime.Now)
+                {
+                    new DataReunion(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
+                    button5_Click(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("No puede modificar una reunion con fecha pasada");
+                }
             }
             else
             {

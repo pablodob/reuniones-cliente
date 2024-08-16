@@ -61,6 +61,10 @@ namespace Cliente
                 button3.Enabled = true;
                 button4.Enabled = true;
             }
+            if (usuarioId == reunionAModificar.CoordinadorId)
+            {
+                textBox2.Enabled = true;
+            }
         }
 
         private async Task<List<Usuario>> getUsuarios(Reunion reunion)

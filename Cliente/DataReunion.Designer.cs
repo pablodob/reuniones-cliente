@@ -42,13 +42,15 @@
             button5 = new Button();
             label8 = new Label();
             textBox3 = new TextBox();
+            label2 = new Label();
+            comboBox3 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(70, 579);
+            button1.Location = new Point(65, 553);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -58,7 +60,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(170, 579);
+            button2.Location = new Point(180, 553);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -94,7 +96,7 @@
             // 
             dateTimePicker1.CustomFormat = "dddd, dd 'de' MMMM 'de' yyyy '-' HH:mm:ss";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(19, 86);
+            dateTimePicker1.Location = new Point(19, 91);
             dateTimePicker1.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
@@ -105,7 +107,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(24, 59);
+            label4.Location = new Point(24, 62);
             label4.Name = "label4";
             label4.Size = new Size(101, 15);
             label4.TabIndex = 7;
@@ -122,9 +124,9 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(13, 57);
+            dataGridView1.Location = new Point(13, 54);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(273, 292);
+            dataGridView1.Size = new Size(273, 232);
             dataGridView1.TabIndex = 12;
             // 
             // panel2
@@ -134,7 +136,7 @@
             panel2.Controls.Add(comboBox1);
             panel2.Location = new Point(20, 196);
             panel2.Name = "panel2";
-            panel2.Size = new Size(295, 364);
+            panel2.Size = new Size(295, 301);
             panel2.TabIndex = 13;
             // 
             // button5
@@ -150,7 +152,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(24, 122);
+            label8.Location = new Point(24, 125);
             label8.Name = "label8";
             label8.Size = new Size(83, 15);
             label8.TabIndex = 13;
@@ -158,17 +160,36 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(43, 140);
+            textBox3.Location = new Point(43, 145);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(237, 36);
             textBox3.TabIndex = 14;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 512);
+            label2.Name = "label2";
+            label2.Size = new Size(77, 15);
+            label2.TabIndex = 15;
+            label2.Text = "Coordinador:";
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(111, 509);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(195, 23);
+            comboBox3.TabIndex = 13;
+            // 
             // DataReunion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 616);
+            ClientSize = new Size(331, 592);
+            Controls.Add(comboBox3);
+            Controls.Add(label2);
             Controls.Add(textBox3);
             Controls.Add(label8);
             Controls.Add(label4);
@@ -182,6 +203,7 @@
             Name = "DataReunion";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Cargar una reunion nueva";
+            Load += DataReunion_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             ResumeLayout(false);
@@ -204,5 +226,7 @@
         private Button button5;
         private Label label8;
         private TextBox textBox3;
+        private Label label2;
+        private ComboBox comboBox3;
     }
 }

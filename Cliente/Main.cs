@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using Negocio;
 
 namespace Cliente
 {
@@ -21,9 +22,9 @@ namespace Cliente
         private bool isAdmin { get; set; }
 
         string securityKey = "LoshermanosseanunidosporqueesaeslaleyprimerA";
-        public Main(string? token)
+        public Main()
         {
-            this.Token = token;
+            this.Token = Conexion.mytoken;
             InitializeComponent();
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -37,7 +38,7 @@ namespace Cliente
                 ClockSkew = TimeSpan.Zero
             };
 
-            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+            var principal = tokenHandler.ValidateToken(Token, tokenValidationParameters, out SecurityToken securityToken);
 
             // El payload del token está en principal.Claims
             userId = int.Parse(principal.FindFirst("usuarioId")?.Value);

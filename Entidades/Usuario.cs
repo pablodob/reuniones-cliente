@@ -14,5 +14,10 @@ namespace Entidades
         [Key]
         public int Id { get; set; }
 
+        public override string ToString()
+        {
+            return Nombre; // Devuelve el nombre de usuario para la representación en cadena
+        }
+
     }
 }

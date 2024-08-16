@@ -58,7 +58,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(70, 635);
+            button1.Location = new Point(61, 738);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -68,7 +68,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(171, 635);
+            button2.Location = new Point(162, 738);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -175,7 +175,7 @@
             // 
             panel2.Controls.Add(label11);
             panel2.Controls.Add(dataGridView1);
-            panel2.Location = new Point(20, 397);
+            panel2.Location = new Point(11, 500);
             panel2.Name = "panel2";
             panel2.Size = new Size(295, 158);
             panel2.TabIndex = 13;
@@ -192,7 +192,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(24, 231);
+            label7.Location = new Point(16, 236);
             label7.Name = "label7";
             label7.Size = new Size(108, 15);
             label7.TabIndex = 11;
@@ -200,11 +200,11 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(25, 249);
+            textBox2.Location = new Point(16, 260);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Escriba aquí la minuta de la reunion realizada";
-            textBox2.Size = new Size(290, 142);
+            textBox2.Size = new Size(290, 220);
             textBox2.TabIndex = 12;
             // 
             // label8
@@ -236,7 +236,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(33, 561);
+            button6.Location = new Point(24, 664);
             button6.Name = "button6";
             button6.Size = new Size(122, 36);
             button6.TabIndex = 16;
@@ -246,7 +246,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(184, 561);
+            button5.Location = new Point(175, 664);
             button5.Name = "button5";
             button5.Size = new Size(122, 36);
             button5.TabIndex = 17;
@@ -257,7 +257,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(111, 604);
+            label12.Location = new Point(102, 707);
             label12.Name = "label12";
             label12.Size = new Size(97, 15);
             label12.TabIndex = 18;
@@ -267,7 +267,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 674);
+            ClientSize = new Size(331, 778);
             Controls.Add(label12);
             Controls.Add(button5);
             Controls.Add(button6);
