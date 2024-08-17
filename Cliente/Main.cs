@@ -79,5 +79,12 @@ namespace Cliente
             formReuniones.MdiParent = this;
             formReuniones.Show();
         }
+
+        private void botonMiInfo_Click(object sender, EventArgs e)
+        {
+            Password pass = new Password(userName);
+            pass.MdiParent = this;
+            pass.Show();
+        }
     }
 }

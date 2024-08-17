@@ -16,7 +16,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return Nombre; // Devuelve el nombre de usuario para la representación en cadena
+            return Nombre;
         }
 
     }

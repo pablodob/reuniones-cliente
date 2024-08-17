@@ -11,9 +11,9 @@ namespace Negocio
     {
         static readonly string defaultURL = "http://localhost:5275/api/Login/";
 
-        public async static Task<Boolean> Add(UsuarioLogin usuario)
+        public async static Task<Boolean> ChangePass(UsuarioLogin usuario)
         {
-            var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL, usuario);
+            var response = await Conexion.Instancia.Cliente.PostAsJsonAsync(defaultURL + "changepassword/", usuario);
             return response.IsSuccessStatusCode;
         }
 
@@ -27,10 +27,6 @@ namespace Negocio
                 var tokenResponse = await response.Content.ReadAsStringAsync();
                 token = JsonDocument.Parse(tokenResponse).RootElement.GetProperty("token").GetString();
                 Conexion.UpdateToken(token);
-                //Conexion.Instancia._Cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                //Conexion.Instancia.Cliente.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-
-                //Conexion.token = token;
             } catch
             {
                 token = null;

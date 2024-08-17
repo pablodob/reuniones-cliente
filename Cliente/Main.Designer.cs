@@ -32,6 +32,7 @@
             menuStrip1 = new MenuStrip();
             botonReuniones = new ToolStripMenuItem();
             botonUsuarios = new ToolStripMenuItem();
+            botonMiInfo = new ToolStripMenuItem();
             label1 = new Label();
             menu.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -48,7 +49,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { botonReuniones, botonUsuarios });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { botonReuniones, botonUsuarios, botonMiInfo });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -68,6 +69,13 @@
             botonUsuarios.Size = new Size(64, 20);
             botonUsuarios.Text = "Usuarios";
             botonUsuarios.Click += botonUsuarios_Click;
+            // 
+            // botonMiInfo
+            // 
+            botonMiInfo.Name = "botonMiInfo";
+            botonMiInfo.Size = new Size(57, 20);
+            botonMiInfo.Text = "Mi info";
+            botonMiInfo.Click += botonMiInfo_Click;
             // 
             // label1
             // 
@@ -107,5 +115,6 @@
         private ToolStripMenuItem botonReuniones;
         private ToolStripMenuItem botonUsuarios;
         private Label label1;
+        private ToolStripMenuItem botonMiInfo;
     }
 }
