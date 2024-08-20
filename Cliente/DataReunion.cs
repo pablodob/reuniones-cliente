@@ -53,7 +53,6 @@ namespace Cliente
                 dateTimePicker1.Value = DateTime.Now;
             }
             
-
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
@@ -61,7 +60,8 @@ namespace Cliente
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
             dataGridView1.Columns["Id"].DataPropertyName = "Id";
-
+            
+            button5.Enabled = false;
             CargarComboBox();
             this.usuarioId = usuarioId;
         }
@@ -87,30 +87,41 @@ namespace Cliente
         {
             if (dateTimePicker1.Value <= DateTime.Now)
             {
-                MessageBox.Show("No puede crearse una reunion con fecha en el pasado");
+                MessageBox.Show("No puede crearse o editarse una reunion con fecha en el pasado");
             }
             else
             {
-                Reunion a = new Reunion();
-                a.Titulo = textBox1.Text;
-                a.Temas = textBox3.Text;
-                a.Estado = "Programada";
-                a.FechaHora = dateTimePicker1.Value;
-                a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
-                a = await ReunionNegocio.Add(a);
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    string IdString = row.Cells["Id"].Value.ToString();
-                    int IdUser = Convert.ToInt32(IdString);
-                    //Usuario user = await UsuarioNegocio.GetUser(IdUser);
-                    ReunionUsuario ru = new ReunionUsuario();
-                    ru.ReunionId = a.Id;
-                    ru.UsuarioId = IdUser;
-                    ru.Estado = "Invitado";
-                    var ret = await ReunionUsuarioNegocio.Add(ru);
+                if (button1.Text == "Editar") {
+                    Reunion a = reunion;
+                    a.Titulo = textBox1.Text;
+                    a.Temas = textBox3.Text;
+                    a.FechaHora = dateTimePicker1.Value;
+                    a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
+                    await ReunionNegocio.Update(a);
                 }
+                else { 
+                    Reunion a = new Reunion();
+                    a.Titulo = textBox1.Text;
+                    a.Temas = textBox3.Text;
+                    a.Estado = "Programada";
+                    a.FechaHora = dateTimePicker1.Value;
+                    a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
+                    await ReunionNegocio.Add(a);
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        string IdString = row.Cells["Id"].Value.ToString();
+                        int IdUser = Convert.ToInt32(IdString);
+                        //Usuario user = await UsuarioNegocio.GetUser(IdUser);
+                        ReunionUsuario ru = new ReunionUsuario();
+                        ru.ReunionId = a.Id;
+                        ru.UsuarioId = IdUser;
+                        ru.Estado = "Enviada";
+                        var ret = await ReunionUsuarioNegocio.Add(ru);
+                    }
+                } 
                 Dispose();
+
             }
         }
 

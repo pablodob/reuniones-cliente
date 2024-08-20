@@ -25,6 +25,13 @@ namespace Negocio
             return data;
         }
 
+        public async static Task<IEnumerable<ReunionUsuario>> GetbyUsuario()
+        {
+            var response = await Conexion.Instancia.Cliente.GetStringAsync(defaultURL + "misReuniones/");
+            var data = JsonConvert.DeserializeObject<List<ReunionUsuario>>(response);
+            return data;
+        }
+
         public async static Task<Boolean> Delete(ReunionUsuario reunionusuario)
         {
             var response = await Conexion.Instancia.Cliente.DeleteAsync(defaultURL + reunionusuario.Id);

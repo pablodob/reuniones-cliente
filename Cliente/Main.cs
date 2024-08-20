@@ -79,5 +79,14 @@ namespace Cliente
             formReuniones.MdiParent = this;
             formReuniones.Show();
         }
+
+        private void iToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (userId != null) { 
+                InfoUser infouser = new InfoUser((int)userId, isAdmin);
+                infouser.MdiParent = this;
+                infouser.Show();
+            }
+        }
     }
 }

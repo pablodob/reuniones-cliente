@@ -36,7 +36,7 @@ namespace Negocio
             return response.IsSuccessStatusCode;
         }
 
-        public async static Task<Usuario> GetUser(long id)
+        public async static Task<Usuario> GetUser(int id)
         {
             var response = await Conexion.Instancia.Cliente.GetStringAsync(defaultURL + id);
             var data = JsonConvert.DeserializeObject<Usuario>(response);

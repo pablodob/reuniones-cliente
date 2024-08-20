@@ -100,6 +100,7 @@ namespace Cliente
             a.Minuta = textBox2.Text;
             a.Temas = label9.Text;
             a.Estado = label6.Text;
+            a.FechaHora = reunion.FechaHora;
             await ReunionNegocio.Update(a);
 
             Dispose();

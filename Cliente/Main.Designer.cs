@@ -32,9 +32,8 @@
             menuStrip1 = new MenuStrip();
             botonReuniones = new ToolStripMenuItem();
             botonUsuarios = new ToolStripMenuItem();
-            botonMiInfo = new ToolStripMenuItem();
+            botonMiinfo = new ToolStripMenuItem();
             label1 = new Label();
-            iToolStripMenuItem = new ToolStripMenuItem();
             menu.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -50,7 +49,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { botonReuniones, botonUsuarios, iToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { botonReuniones, botonUsuarios, botonMiinfo });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -71,12 +70,12 @@
             botonUsuarios.Text = "Usuarios";
             botonUsuarios.Click += botonUsuarios_Click;
             // 
-            // botonMiInfo
+            // botonMiinfo
             // 
-            botonMiInfo.Name = "botonMiInfo";
-            botonMiInfo.Size = new Size(57, 20);
-            botonMiInfo.Text = "Mi info";
-            botonMiInfo.Click += botonMiInfo_Click;
+            botonMiinfo.Name = "botonMiinfo";
+            botonMiinfo.Size = new Size(142, 20);
+            botonMiinfo.Text = "Información de usuario";
+            botonMiinfo.Click += iToolStripMenuItem_Click;
             // 
             // label1
             // 
@@ -87,13 +86,6 @@
             label1.Size = new Size(79, 15);
             label1.TabIndex = 2;
             label1.Text = "Datos usuario";
-            // 
-            // iToolStripMenuItem
-            // 
-            iToolStripMenuItem.Name = "iToolStripMenuItem";
-            iToolStripMenuItem.Size = new Size(142, 20);
-            iToolStripMenuItem.Text = "Información de usuario";
-            iToolStripMenuItem.Click += iToolStripMenuItem_Click;
             // 
             // Main
             // 
@@ -123,6 +115,6 @@
         private ToolStripMenuItem botonReuniones;
         private ToolStripMenuItem botonUsuarios;
         private Label label1;
-        private ToolStripMenuItem iToolStripMenuItem;
+        private ToolStripMenuItem botonMiinfo;
     }
 }
