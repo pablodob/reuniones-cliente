@@ -21,20 +21,7 @@ namespace Cliente
     {
         int? usuarioId;
         Reunion reunion;
-        ReunionUsuario invitacion;
-
-
-        public DataReunionVer()
-        {
-            InitializeComponent();
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.Columns.Add("Nombre", "Nombre");
-            dataGridView1.Columns.Add("NombreUsuario", "Usuario");
-            dataGridView1.Columns.Add("Id", "Id");
-            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
-            dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
-            dataGridView1.Columns["Id"].DataPropertyName = "Id";
-        }
+        ReunionUsuario? invitacion;
 
         public DataReunionVer(Reunion reunionAModificar, int? usuarioId)
         {
@@ -69,21 +56,28 @@ namespace Cliente
 
         private async Task<List<Usuario>> getUsuarios(Reunion reunion)
         {
-            var reunionUsuario = await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
-            invitacion = reunionUsuario.Where(ru => ru.UsuarioId == usuarioId).ToList()[0];
-            var usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
-            if (invitacion.Estado != "Invitado")
+            List<ReunionUsuario> reunionUsuario = (List < ReunionUsuario > )await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            List<Usuario> usuarios = new List<Usuario>();
+            if (reunionUsuario != null && reunionUsuario.Count > 0)
             {
-                label12.Text = "Invitación Pendiete";
-                button5.Enabled = false;
-                button6.Enabled = false;
-            } else if (invitacion.Estado != "Aceptada")
-            {
-                label12.Text = "Invitación Aceptada";
-            } else if (invitacion.Estado != "Rechazada")
-            {
-                label12.Text = "Invitación Rechazada";
+                invitacion = reunionUsuario.Where(ru => ru.UsuarioId == usuarioId).ToList()[0];
+                if (invitacion.Estado != "Invitado")
+                {
+                    label12.Text = "Invitación Pendiete";
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                }
+                else if (invitacion.Estado != "Aceptada")
+                {
+                    label12.Text = "Invitación Aceptada";
+                }
+                else if (invitacion.Estado != "Rechazada")
+                {
+                    label12.Text = "Invitación Rechazada";
+                }
+                usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
             }
+
             return usuarios;
         }
 

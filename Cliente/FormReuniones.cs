@@ -65,7 +65,8 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                if (lista.Result.ToList()[filaSeleccionada].FechaHora < DateTime.Now)
+                DateTime now = DateTime.Now;
+                if (lista.Result.ToList()[filaSeleccionada].FechaHora > now || lista.Result.ToList()[filaSeleccionada].FechaHora == null)
                 {
                     new DataReunion(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
                     button5_Click(sender, e);

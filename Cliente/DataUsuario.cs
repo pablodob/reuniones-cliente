@@ -19,6 +19,7 @@ namespace Cliente
         public DataUsuario()
         {
             InitializeComponent();
+            label3.Visible = false;
             label4.Visible = false;
         }
 
@@ -31,7 +32,7 @@ namespace Cliente
             label5.Visible = false;
             textBox3.Visible = false;
             label4.Text = Convert.ToString(usuarioAModificar.Id);
-            //textBox3.Enabled = false;
+            textBox2.Enabled = false;
         }
 
         private async void button1_Click(object sender, EventArgs e)
