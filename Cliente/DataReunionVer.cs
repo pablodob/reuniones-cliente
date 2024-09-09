@@ -22,6 +22,7 @@ namespace Cliente
         int? usuarioId;
         Reunion reunion;
         ReunionUsuario? invitacion;
+        List<Texto> textos = new List<Texto>();
 
         public DataReunionVer(Reunion reunionAModificar, int? usuarioId)
         {
@@ -52,6 +53,15 @@ namespace Cliente
             {
                 textBox2.Enabled = true;
             }
+
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.Columns.Add("Titulo", "Titulo");
+            dataGridView2.Columns.Add("Link", "Link");
+            dataGridView2.Columns.Add("Obligatorio", "Obligatorio");
+            dataGridView2.Columns["Titulo"].DataPropertyName = "Titulo";
+            dataGridView2.Columns["Link"].DataPropertyName = "Link";
+            dataGridView2.Columns["Obligatorio"].DataPropertyName = "Obligatorio";
+            dataGridView2.DataSource = textos;
         }
 
         private async Task<List<Usuario>> getUsuarios(Reunion reunion)
@@ -141,6 +151,10 @@ namespace Cliente
 
             dataGridView1.DataSource = usuarios;
             dataGridView1.Visible = true;
+
+            textos = await TextoNegocio.GetbyReunionId(reunion.Id);
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = textos;
         }
 
     }

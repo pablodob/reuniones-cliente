@@ -15,16 +15,18 @@ namespace Cliente
     public partial class FormReuniones : Form
     {
         private int? usuarioId {  get; set; }
-        private Task<IEnumerable<Reunion>>? lista;
+        private Task<List<Reunion>>? reuniones;
 
         public FormReuniones()
         {
             InitializeComponent();
+            reuniones = ReunionNegocio.GetAll();
         }
 
         public FormReuniones(bool isAdmin, int? userId)
         {
             InitializeComponent();
+            reuniones = ReunionNegocio.GetAll();
             if (!isAdmin)
             {
                 button1.Visible = false;
@@ -32,12 +34,6 @@ namespace Cliente
                 button4.Visible = false;
             }
             usuarioId = userId;
-        }
-
-        public IEnumerable<Reunion> cargarTabla()
-        {
-            lista = ReunionNegocio.GetAll();
-            return lista.Result;
         }
 
         private void button1_Click(object sender, EventArgs e) // crear nueva reunion
@@ -51,7 +47,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataReunionVer(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
+                new DataReunionVer(reuniones.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
                 button5_Click(sender, e);
             }
             else
@@ -66,9 +62,9 @@ namespace Cliente
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
                 DateTime now = DateTime.Now;
-                if (lista.Result.ToList()[filaSeleccionada].FechaHora > now || lista.Result.ToList()[filaSeleccionada].FechaHora == null)
+                if (reuniones.Result.ToList()[filaSeleccionada].FechaHora > now || reuniones.Result.ToList()[filaSeleccionada].FechaHora == null)
                 {
-                    new DataReunion(lista.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
+                    new DataReunion(reuniones.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
                     button5_Click(sender, e);
                 }
                 else
@@ -87,7 +83,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                await ReunionNegocio.Delete(lista.Result.ToList()[filaSeleccionada]);
+                await ReunionNegocio.Delete(reuniones.Result.ToList()[filaSeleccionada]);
                 button5_Click(sender, e);
             }
             else
@@ -98,15 +94,13 @@ namespace Cliente
 
         private async void button5_Click(object sender, EventArgs e) //boton para listar
         {
-            Task<IEnumerable<Reunion>> task = new Task<IEnumerable<Reunion>>(cargarTabla);
-            task.Start();
-            dataGridView1.DataSource = await task;
+            List<Reunion> reus = await ReunionNegocio.GetAll();
+            dataGridView1.DataSource = reus;
         }
         private async void FormReuniones_Load_1(object sender, EventArgs e)
         {
-            Task<IEnumerable<Reunion>> task = new Task<IEnumerable<Reunion>>(cargarTabla);
-            task.Start();
-            dataGridView1.DataSource = await task;
+            List<Reunion> reus = await ReunionNegocio.GetAll();
+            dataGridView1.DataSource = reus;
         }
 
     }

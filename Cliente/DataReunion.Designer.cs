@@ -44,13 +44,23 @@
             textBox3 = new TextBox();
             label2 = new Label();
             comboBox3 = new ComboBox();
+            panel1 = new Panel();
+            dataGridView2 = new DataGridView();
+            textBox2 = new TextBox();
+            textBox4 = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
+            checkBox1 = new CheckBox();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(65, 553);
+            button1.Location = new Point(65, 753);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -60,7 +70,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(180, 553);
+            button2.Location = new Point(180, 753);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -134,7 +144,7 @@
             panel2.Controls.Add(dataGridView1);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(comboBox1);
-            panel2.Location = new Point(20, 196);
+            panel2.Location = new Point(20, 396);
             panel2.Name = "panel2";
             panel2.Size = new Size(295, 301);
             panel2.TabIndex = 13;
@@ -169,7 +179,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(24, 512);
+            label2.Location = new Point(24, 712);
             label2.Name = "label2";
             label2.Size = new Size(77, 15);
             label2.TabIndex = 15;
@@ -178,16 +188,91 @@
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(111, 509);
+            comboBox3.Location = new Point(111, 709);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(195, 23);
             comboBox3.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(checkBox1);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(textBox4);
+            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(dataGridView2);
+            panel1.Location = new Point(20, 201);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(295, 178);
+            panel1.TabIndex = 16;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(13, 104);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(273, 60);
+            dataGridView2.TabIndex = 0;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(71, 12);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(207, 23);
+            textBox2.TabIndex = 1;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(71, 47);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(207, 23);
+            textBox4.TabIndex = 2;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(13, 20);
+            label5.Name = "label5";
+            label5.Size = new Size(35, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Texto";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(15, 50);
+            label6.Name = "label6";
+            label6.Size = new Size(29, 15);
+            label6.TabIndex = 4;
+            label6.Text = "Link";
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(15, 79);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(86, 19);
+            checkBox1.TabIndex = 5;
+            checkBox1.Text = "Obligatorio";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(107, 76);
+            button3.Name = "button3";
+            button3.Size = new Size(171, 22);
+            button3.TabIndex = 6;
+            button3.Text = "Agregar texto";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // DataReunion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 592);
+            ClientSize = new Size(331, 793);
+            Controls.Add(panel1);
             Controls.Add(comboBox3);
             Controls.Add(label2);
             Controls.Add(textBox3);
@@ -206,6 +291,9 @@
             Load += DataReunion_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -228,5 +316,13 @@
         private TextBox textBox3;
         private Label label2;
         private ComboBox comboBox3;
+        private Panel panel1;
+        private TextBox textBox2;
+        private DataGridView dataGridView2;
+        private Button button3;
+        private CheckBox checkBox1;
+        private Label label6;
+        private Label label5;
+        private TextBox textBox4;
     }
 }

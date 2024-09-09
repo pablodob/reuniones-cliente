@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Microsoft.VisualBasic.ApplicationServices;
 using Negocio;
 using System;
 using System.Collections;
@@ -21,8 +22,11 @@ namespace Cliente
     public partial class DataReunion : Form
     {
         List<Usuario> invitados = new List<Usuario>();
+        List<Texto> textos = new List<Texto>();
+        List<Texto> newtextos = new List<Texto>();
         Reunion reunion;
         int? usuarioId;
+        List<ReunionUsuario> oldInvitaciones = new List<ReunionUsuario>();
 
         public DataReunion()
         {
@@ -36,6 +40,15 @@ namespace Cliente
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
             dataGridView1.Columns["Id"].DataPropertyName = "Id";
             dateTimePicker1.Value = DateTime.Now;
+
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.Columns.Add("Titulo", "Titulo");
+            dataGridView2.Columns.Add("Link", "Link");
+            dataGridView2.Columns.Add("Obligatorio", "Obligatorio");
+            dataGridView2.Columns["Titulo"].DataPropertyName = "Titulo";
+            dataGridView2.Columns["Link"].DataPropertyName = "Link";
+            dataGridView2.Columns["Obligatorio"].DataPropertyName = "Obligatorio";
+            dataGridView2.DataSource = textos;
         }
 
         public DataReunion(Reunion reunionAModificar, int? usuarioId)
@@ -48,11 +61,12 @@ namespace Cliente
             if (reunionAModificar.FechaHora != null)
             {
                 dateTimePicker1.Value = (DateTime)reunionAModificar.FechaHora;
-            } else
+            }
+            else
             {
                 dateTimePicker1.Value = DateTime.Now;
             }
-            
+
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
@@ -60,9 +74,19 @@ namespace Cliente
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
             dataGridView1.Columns["Id"].DataPropertyName = "Id";
-            
+
+            dataGridView2.AutoGenerateColumns = false;
+            dataGridView2.Columns.Add("Titulo", "Titulo");
+            dataGridView2.Columns.Add("Link", "Link");
+            dataGridView2.Columns.Add("Obligatorio", "Obligatorio");
+            dataGridView2.Columns["Titulo"].DataPropertyName = "Titulo";
+            dataGridView2.Columns["Link"].DataPropertyName = "Link";
+            dataGridView2.Columns["Obligatorio"].DataPropertyName = "Obligatorio";
+            dataGridView2.DataSource = textos;
+
             button5.Enabled = false;
             CargarComboBox();
+            cargarTextos(reunionAModificar.Id);
             this.usuarioId = usuarioId;
         }
 
@@ -71,10 +95,19 @@ namespace Cliente
             return UsuarioNegocio.GetAll().Result;
         }
 
+        private async void cargarTextos(int reunionId)
+        {
+            textos = await TextoNegocio.GetbyReunionId(reunionId);
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = textos;
+
+        }
+
         private async void CargarComboBox()
         {
             Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
             task.Start();
+            
             comboBox1.DataSource = await task;
             comboBox1.DisplayMember = "Nombre";
             comboBox1.ValueMember = "Id";
@@ -91,35 +124,66 @@ namespace Cliente
             }
             else
             {
-                if (button1.Text == "Editar") {
+                if (button1.Text == "Editar")
+                {
                     Reunion a = reunion;
                     a.Titulo = textBox1.Text;
                     a.Temas = textBox3.Text;
                     a.FechaHora = dateTimePicker1.Value;
                     a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
                     await ReunionNegocio.Update(a);
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        string IdString = row.Cells["Id"].Value.ToString();
+                        int IdUser = Convert.ToInt32(IdString);
+                        if (oldInvitaciones.Where(x => x.UsuarioId == IdUser && x.ReunionId == reunion.Id).ToList().Count() == 0)
+                        {
+                            ReunionUsuario ru = new ReunionUsuario();
+                            ru.ReunionId = reunion.Id;
+                            ru.UsuarioId = IdUser;
+                            ru.Estado = "Enviada";
+                            var ret = await ReunionUsuarioNegocio.Add(ru);
+                        }
+                    }
+                    foreach (Texto text in newtextos)
+                    {
+                        text.ReunionId = a.Id;
+                        var rettext = await TextoNegocio.Add(text);
+                    }
+
                 }
-                else { 
+                else
+                {
                     Reunion a = new Reunion();
                     a.Titulo = textBox1.Text;
                     a.Temas = textBox3.Text;
                     a.Estado = "Programada";
                     a.FechaHora = dateTimePicker1.Value;
                     a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
-                    await ReunionNegocio.Add(a);
+                    Reunion? res = await ReunionNegocio.Add(a);
 
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (res != null)
                     {
-                        string IdString = row.Cells["Id"].Value.ToString();
-                        int IdUser = Convert.ToInt32(IdString);
-                        //Usuario user = await UsuarioNegocio.GetUser(IdUser);
-                        ReunionUsuario ru = new ReunionUsuario();
-                        ru.ReunionId = a.Id;
-                        ru.UsuarioId = IdUser;
-                        ru.Estado = "Enviada";
-                        var ret = await ReunionUsuarioNegocio.Add(ru);
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            string IdString = row.Cells["Id"].Value.ToString();
+                            int IdUser = Convert.ToInt32(IdString);
+                            //Usuario user = await UsuarioNegocio.GetUser(IdUser);
+                            ReunionUsuario ru = new ReunionUsuario();
+                            ru.ReunionId = res.Id;
+                            ru.UsuarioId = IdUser;
+                            ru.Estado = "Enviada";
+                            var ret = await ReunionUsuarioNegocio.Add(ru);
+                        }
+
+                        foreach (Texto text in newtextos)
+                        {
+                            text.ReunionId = res.Id;
+                            var rettext = await TextoNegocio.Add(text);
+                        }
                     }
-                } 
+                }
                 Dispose();
 
             }
@@ -145,10 +209,10 @@ namespace Cliente
         {
             comboBox3.DataSource = null;
             comboBox3.DataSource = invitados;
-            
+
             dataGridView1.Visible = true;
             dataGridView1.DataSource = null;
-            
+
             if (reunion != null)
             {
                 List<Usuario>? usuarios = await getUsuarios(reunion);
@@ -160,9 +224,25 @@ namespace Cliente
         private async Task<List<Usuario>>? getUsuarios(Reunion reunion)
         {
             var reunionUsuario = await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            oldInvitaciones = reunionUsuario.ToList();
             var usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
 
             return usuarios;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Texto text = new Texto();
+            text.Titulo = textBox2.Text;
+            text.Link = textBox4.Text;
+            text.Obligatorio = checkBox1.Checked;
+            textos.Add(text);
+            newtextos.Add(text);
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = textos;
+            textBox2.Text = "";
+            textBox4.Text = "";
+            checkBox1.Checked = false;
         }
     }
 }

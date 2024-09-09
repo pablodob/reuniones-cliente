@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public class Reunion
+    public class Texto
     {
         public string? Titulo { get; set; }
-        public string? Estado { get; set; }
-        public string? Minuta { get; set; }
-        public string? Temas { get; set; }
-        public DateTime? FechaHora { get; set; }
-        public Usuario? Coordinador { get; set; }
-        [ForeignKey("Usuario")]
-        public int? CoordinadorId { get; set; }
+        public string? Link { get; set; }
+        public bool? Obligatorio { get; set; }
+        public int? ReunionId { get; set; }
+        public Reunion? Reunion { get; set; }
 
         [Key]
         public int Id { get; set; }

@@ -5,17 +5,18 @@ namespace Cliente
 {
     public partial class FormUsuarios : Form
     {
-        private Task<IEnumerable<Usuario>>? lista;
+        private Task<IEnumerable<Usuario>>? usuarios;
 
         public FormUsuarios()
         {
             InitializeComponent();
+            usuarios = UsuarioNegocio.GetAll();
         }
 
         public IEnumerable<Usuario> cargarTabla()
         {
-            lista = UsuarioNegocio.GetAll();
-            return lista.Result;
+            usuarios = UsuarioNegocio.GetAll();
+            return usuarios.Result;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -35,7 +36,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataUsuario(lista.Result.ToList()[filaSeleccionada]).ShowDialog();
+                new DataUsuario(usuarios.Result.ToList()[filaSeleccionada]).ShowDialog();
                 button1_Click(sender, e);
             }
             else
@@ -48,7 +49,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                await UsuarioNegocio.Delete(lista.Result.ToList()[filaSeleccionada]);
+                await UsuarioNegocio.Delete(usuarios.Result.ToList()[filaSeleccionada]);
                 button1_Click(sender, e);
             }
             else
@@ -62,7 +63,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataUsuario(lista.Result.ToList()[filaSeleccionada]).ShowDialog();
+                new DataUsuario(usuarios.Result.ToList()[filaSeleccionada]).ShowDialog();
                 button1_Click(sender, e);
             }
             else

@@ -51,9 +51,14 @@
             button6 = new Button();
             button5 = new Button();
             label12 = new Label();
+            panel3 = new Panel();
+            label13 = new Label();
+            dataGridView2 = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -68,7 +73,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(162, 738);
+            button2.Location = new Point(421, 738);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -115,7 +120,7 @@
             // button3
             // 
             button3.Enabled = false;
-            button3.Location = new Point(37, 50);
+            button3.Location = new Point(142, 50);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 8;
@@ -126,7 +131,7 @@
             // button4
             // 
             button4.Enabled = false;
-            button4.Location = new Point(138, 50);
+            button4.Location = new Point(362, 50);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 9;
@@ -143,7 +148,7 @@
             panel1.Controls.Add(button4);
             panel1.Location = new Point(33, 109);
             panel1.Name = "panel1";
-            panel1.Size = new Size(273, 84);
+            panel1.Size = new Size(529, 84);
             panel1.TabIndex = 10;
             // 
             // label6
@@ -166,24 +171,24 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(13, 25);
+            dataGridView1.Location = new Point(13, 34);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(273, 120);
+            dataGridView1.Size = new Size(519, 79);
             dataGridView1.TabIndex = 12;
             // 
             // panel2
             // 
             panel2.Controls.Add(label11);
             panel2.Controls.Add(dataGridView1);
-            panel2.Location = new Point(11, 500);
+            panel2.Location = new Point(11, 535);
             panel2.Name = "panel2";
-            panel2.Size = new Size(295, 158);
+            panel2.Size = new Size(551, 123);
             panel2.TabIndex = 13;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(13, 7);
+            label11.Location = new Point(14, 10);
             label11.Name = "label11";
             label11.Size = new Size(104, 15);
             label11.TabIndex = 13;
@@ -204,7 +209,7 @@
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Escriba aquí la minuta de la reunion realizada";
-            textBox2.Size = new Size(290, 220);
+            textBox2.Size = new Size(546, 135);
             textBox2.TabIndex = 12;
             // 
             // label8
@@ -246,7 +251,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(175, 664);
+            button5.Location = new Point(421, 664);
             button5.Name = "button5";
             button5.Size = new Size(122, 36);
             button5.TabIndex = 17;
@@ -257,17 +262,44 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(102, 707);
+            label12.Location = new Point(248, 711);
             label12.Name = "label12";
             label12.Size = new Size(97, 15);
             label12.TabIndex = 18;
             label12.Text = "Estado invitacion";
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(dataGridView2);
+            panel3.Controls.Add(label13);
+            panel3.Location = new Point(11, 401);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(551, 128);
+            panel3.TabIndex = 19;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(10, 5);
+            label13.Name = "label13";
+            label13.Size = new Size(40, 15);
+            label13.TabIndex = 0;
+            label13.Text = "Textos";
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(6, 23);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(526, 92);
+            dataGridView2.TabIndex = 1;
+            // 
             // DataReunionVer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 778);
+            ClientSize = new Size(578, 778);
+            Controls.Add(panel3);
             Controls.Add(label12);
             Controls.Add(button5);
             Controls.Add(button6);
@@ -293,6 +325,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -322,5 +357,8 @@
         private Button button5;
         private Label label11;
         private Label label12;
+        private Panel panel3;
+        private DataGridView dataGridView2;
+        private Label label13;
     }
 }
