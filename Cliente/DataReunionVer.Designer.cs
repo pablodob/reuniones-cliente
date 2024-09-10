@@ -52,8 +52,8 @@
             button5 = new Button();
             label12 = new Label();
             panel3 = new Panel();
-            label13 = new Label();
             dataGridView2 = new DataGridView();
+            label13 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -277,6 +277,14 @@
             panel3.Size = new Size(551, 128);
             panel3.TabIndex = 19;
             // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(6, 23);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.Size = new Size(526, 92);
+            dataGridView2.TabIndex = 1;
+            // 
             // label13
             // 
             label13.AutoSize = true;
@@ -285,14 +293,6 @@
             label13.Size = new Size(40, 15);
             label13.TabIndex = 0;
             label13.Text = "Textos";
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(6, 23);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(526, 92);
-            dataGridView2.TabIndex = 1;
             // 
             // DataReunionVer
             // 

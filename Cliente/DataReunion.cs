@@ -118,6 +118,30 @@ namespace Cliente
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            label1.ForeColor = Color.Black;
+            label7.ForeColor = Color.Black;
+            label8.ForeColor = Color.Black;
+            bool faltanDatos = false;
+            if(textBox1.Text == "")
+            {
+                label1.ForeColor = Color.Red;
+                faltanDatos = true;
+            }
+            if (textBox3.Text == "")
+            {
+                label8.ForeColor = Color.Red;
+                faltanDatos = true;
+            }
+            if (dataGridView1.Rows.Count == 0)
+            {
+                label7.ForeColor = Color.Red;
+                faltanDatos = true;
+            }
+
+            if (faltanDatos)
+            {
+                MessageBox.Show("Faltan datos obligatorios");
+            }
             if (dateTimePicker1.Value <= DateTime.Now)
             {
                 MessageBox.Show("No puede crearse o editarse una reunion con fecha en el pasado");

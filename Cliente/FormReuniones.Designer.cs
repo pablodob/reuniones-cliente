@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button7 = new Button();
+            button6 = new Button();
+            button5 = new Button();
             listarbutton = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -44,6 +47,9 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button7);
+            panel1.Controls.Add(button6);
+            panel1.Controls.Add(button5);
             panel1.Controls.Add(listarbutton);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -52,16 +58,46 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(168, 314);
+            panel1.Size = new Size(168, 466);
             panel1.TabIndex = 0;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(33, 400);
+            button7.Name = "button7";
+            button7.Size = new Size(105, 43);
+            button7.TabIndex = 8;
+            button7.Text = "Invitaciones rechazadas";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(33, 342);
+            button6.Name = "button6";
+            button6.Size = new Size(105, 43);
+            button6.TabIndex = 7;
+            button6.Text = "Invitaciones aceptadas";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += button6_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(33, 280);
+            button5.Name = "button5";
+            button5.Size = new Size(105, 43);
+            button5.TabIndex = 6;
+            button5.Text = "Invitaciones pendientes";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click_1;
             // 
             // listarbutton
             // 
             listarbutton.Location = new Point(33, 219);
             listarbutton.Name = "listarbutton";
-            listarbutton.Size = new Size(105, 23);
+            listarbutton.Size = new Size(105, 43);
             listarbutton.TabIndex = 5;
-            listarbutton.Text = "Listar reuniones";
+            listarbutton.Text = "Todas las reuniones";
             listarbutton.UseVisualStyleBackColor = true;
             listarbutton.Click += button5_Click;
             // 
@@ -111,7 +147,7 @@
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(168, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(411, 314);
+            panel2.Size = new Size(491, 466);
             panel2.TabIndex = 1;
             // 
             // dataGridView1
@@ -122,14 +158,14 @@
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(411, 314);
+            dataGridView1.Size = new Size(491, 466);
             dataGridView1.TabIndex = 0;
             // 
             // FormReuniones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(579, 314);
+            ClientSize = new Size(659, 466);
             ControlBox = false;
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -153,6 +189,8 @@
         private Panel panel2;
         private DataGridView dataGridView1;
         private Button listarbutton;
-
+        private Button button7;
+        private Button button6;
+        private Button button5;
     }
 }

@@ -49,6 +49,12 @@ namespace Cliente
                 button3.Enabled = true;
                 button4.Enabled = true;
             }
+            if (reunionAModificar.FechaHora <= DateTime.Now)
+            {
+                button5.Enabled = false;
+                button6.Enabled = false;
+            }
+
             if (usuarioId == reunionAModificar.CoordinadorId)
             {
                 textBox2.Enabled = true;
@@ -66,7 +72,7 @@ namespace Cliente
 
         private async Task<List<Usuario>> getUsuarios(Reunion reunion)
         {
-            List<ReunionUsuario> reunionUsuario = (List < ReunionUsuario > )await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            List<ReunionUsuario> reunionUsuario = (List<ReunionUsuario>)await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
             List<Usuario> usuarios = new List<Usuario>();
             if (reunionUsuario != null && reunionUsuario.Count > 0)
             {
@@ -98,14 +104,22 @@ namespace Cliente
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            Reunion a = new Reunion();
-            a.Id = int.Parse(label3.Text);
-            a.Titulo = label1.Text;
-            a.Minuta = textBox2.Text;
-            a.Temas = label9.Text;
-            a.Estado = label6.Text;
-            a.FechaHora = reunion.FechaHora;
-            await ReunionNegocio.Update(a);
+            if (textBox2.Text == "")
+            {
+                MessageBox.Show("Las memorias aún no han sido guardadas");
+            }
+            else
+            {
+                Reunion a = new Reunion();
+                a.Id = int.Parse(label3.Text);
+                a.Titulo = label1.Text;
+                a.Minuta = textBox2.Text;
+                a.Temas = label9.Text;
+                a.Estado = label6.Text;
+                a.FechaHora = reunion.FechaHora;
+                await ReunionNegocio.Update(a);
+            }
+
 
             Dispose();
         }
@@ -121,18 +135,30 @@ namespace Cliente
             textBox2.Enabled = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
-            label6.Text = "Cancelada";
+            DialogResult result = MessageBox.Show("¿Desea cancelar la reunión? Esta acción es irreversible.", "Confirmación", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                reunion.Estado = "Cancelada";
+                await ReunionNegocio.Update(reunion);
+
+                Dispose();
+            }
+
         }
 
         private async void button5_Click(object sender, EventArgs e)
         {
-            button5.Enabled = false;
-            button6.Enabled = false;
-            label12.Text = "Invitación rechazada";
-            invitacion.Estado = "Rechazada";
-            await ReunionUsuarioNegocio.Update(invitacion);
+            DialogResult result = MessageBox.Show("Esta segur que desea rechazar la invitacion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                button5.Enabled = false;
+                button6.Enabled = false;
+                label12.Text = "Invitación rechazada";
+                invitacion.Estado = "Rechazada";
+                await ReunionUsuarioNegocio.Update(invitacion);
+            }
         }
 
         private async void button6_Click(object sender, EventArgs e)

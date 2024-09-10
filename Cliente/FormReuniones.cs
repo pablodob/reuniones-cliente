@@ -14,7 +14,7 @@ namespace Cliente
 {
     public partial class FormReuniones : Form
     {
-        private int? usuarioId {  get; set; }
+        private int? usuarioId { get; set; }
         private Task<List<Reunion>>? reuniones;
 
         public FormReuniones()
@@ -97,11 +97,70 @@ namespace Cliente
             List<Reunion> reus = await ReunionNegocio.GetAll();
             dataGridView1.DataSource = reus;
         }
+
         private async void FormReuniones_Load_1(object sender, EventArgs e)
         {
             List<Reunion> reus = await ReunionNegocio.GetAll();
             dataGridView1.DataSource = reus;
         }
 
+        private async void button5_Click_1(object sender, EventArgs e)
+        {
+            if (reuniones != null)
+            {
+                List<Reunion> reus = await reuniones;
+                List<Reunion> reusPendientes = new List<Reunion>();
+                foreach (Reunion r in reus)
+                {
+                    IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(r.Id);
+                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault();
+                    if (invitacion != null && invitacion.Estado == "Pendiente")
+                    {
+                        reusPendientes.Add(r);
+                    }
+                }
+                dataGridView1.DataSource = reusPendientes;
+            }
+        }
+
+        private async void button6_Click(object sender, EventArgs e)
+        {
+            if (reuniones != null)
+            {
+                List<Reunion> reus = await reuniones;
+                List<Reunion> reusPendientes = new List<Reunion>();
+                foreach (Reunion r in reus)
+                {
+                    IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(r.Id);
+                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault();
+                    if (invitacion != null && invitacion.Estado == "Aceptada")
+                    {
+                        reusPendientes.Add(r);
+                    }
+                }
+                dataGridView1.DataSource = reusPendientes;
+            }
+
+        }
+
+        private async void button7_Click(object sender, EventArgs e)
+        {
+            if (reuniones != null)
+            {
+                List<Reunion> reus = await reuniones;
+                List<Reunion> reusPendientes = new List<Reunion>();
+                foreach (Reunion r in reus)
+                {
+                    IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(r.Id);
+                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault();
+                    if (invitacion != null && invitacion.Estado == "Rechazada")
+                    {
+                        reusPendientes.Add(r);
+                    }
+                }
+                dataGridView1.DataSource = reusPendientes;
+            }
+
+        }
     }
 }

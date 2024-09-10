@@ -44,7 +44,7 @@
             menu.Dock = DockStyle.Top;
             menu.Location = new Point(0, 0);
             menu.Name = "menu";
-            menu.Size = new Size(800, 25);
+            menu.Size = new Size(934, 25);
             menu.TabIndex = 0;
             // 
             // menuStrip1
@@ -52,15 +52,15 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { botonReuniones, botonUsuarios, botonMiinfo });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(934, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // botonReuniones
             // 
             botonReuniones.Name = "botonReuniones";
-            botonReuniones.Size = new Size(74, 20);
-            botonReuniones.Text = "Reuniones";
+            botonReuniones.Size = new Size(148, 20);
+            botonReuniones.Text = "Reuniones / Invitaciones";
             botonReuniones.Click += botonReuniones_Click;
             // 
             // botonUsuarios
@@ -81,7 +81,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom;
             label1.AutoSize = true;
-            label1.Location = new Point(532, 426);
+            label1.Location = new Point(599, 537);
             label1.Name = "label1";
             label1.Size = new Size(79, 15);
             label1.TabIndex = 2;
@@ -91,7 +91,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(934, 561);
             Controls.Add(label1);
             Controls.Add(menu);
             IsMdiContainer = true;
