@@ -37,9 +37,10 @@ namespace Cliente
                 List<ReunionUsuario> invitaciones = (List < ReunionUsuario > )await ReunionUsuarioNegocio.GetbyUsuario();
                 foreach (ReunionUsuario ru in invitaciones)
                 {
-                    if (ru.Reunion != null) { 
+                    if (ru.Reunion != null && ru.Estado == "Enviada")
+                    {
                         MessageBox.Show("Usted a sido invitado a la reunión " + ru.Reunion.Titulo + " a realizarse el " + ru.Reunion.FechaHora.ToString(), "Nueva reunión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ru.Estado = "Invitado";
+                        ru.Estado = "Abierta";
                         await ReunionUsuarioNegocio.Update(ru);
                     }
                 }
