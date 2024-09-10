@@ -23,6 +23,8 @@ namespace Cliente
         List<Usuario> invitados = new List<Usuario>();
         Reunion reunion;
         int? usuarioId;
+        List<ReunionUsuario> oldInvitaciones = new List<ReunionUsuario>();
+
 
         public DataReunion()
         {
@@ -85,6 +87,28 @@ namespace Cliente
 
         private async void button1_Click(object sender, EventArgs e)
         {
+            label1.ForeColor = Color.Black;
+            label8.ForeColor = Color.Black;
+            bool faltanDatos = false;
+            if (textBox1.Text == "")
+            {
+                label1.ForeColor = Color.Red;
+                faltanDatos = true;
+            }
+            if (textBox3.Text == "")
+            {
+                label8.ForeColor = Color.Red;
+                faltanDatos = true;
+            }
+            if (dataGridView1.Rows.Count == 0)
+            {
+                faltanDatos = true;
+            }
+
+            if (faltanDatos)
+            {
+                MessageBox.Show("Faltan datos obligatorios");
+            }
             if (dateTimePicker1.Value <= DateTime.Now)
             {
                 MessageBox.Show("No puede crearse o editarse una reunion con fecha en el pasado");
@@ -98,6 +122,21 @@ namespace Cliente
                     a.FechaHora = dateTimePicker1.Value;
                     a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
                     await ReunionNegocio.Update(a);
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        string IdString = row.Cells["Id"].Value.ToString();
+                        int IdUser = Convert.ToInt32(IdString);
+                        if (oldInvitaciones.Where(x => x.UsuarioId == IdUser && x.ReunionId == reunion.Id).ToList().Count() == 0)
+                        {
+                            ReunionUsuario ru = new ReunionUsuario();
+                            ru.ReunionId = reunion.Id;
+                            ru.UsuarioId = IdUser;
+                            ru.Estado = "Enviada";
+                            var ret = await ReunionUsuarioNegocio.Add(ru);
+                        }
+                    }
+
                 }
                 else { 
                     Reunion a = new Reunion();
@@ -106,18 +145,21 @@ namespace Cliente
                     a.Estado = "Programada";
                     a.FechaHora = dateTimePicker1.Value;
                     a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
-                    await ReunionNegocio.Add(a);
+                    Reunion? res = await ReunionNegocio.Add(a);
 
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    if (res != null)
                     {
-                        string IdString = row.Cells["Id"].Value.ToString();
-                        int IdUser = Convert.ToInt32(IdString);
-                        //Usuario user = await UsuarioNegocio.GetUser(IdUser);
-                        ReunionUsuario ru = new ReunionUsuario();
-                        ru.ReunionId = a.Id;
-                        ru.UsuarioId = IdUser;
-                        ru.Estado = "Enviada";
-                        var ret = await ReunionUsuarioNegocio.Add(ru);
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            string IdString = row.Cells["Id"].Value.ToString();
+                            int IdUser = Convert.ToInt32(IdString);
+                            //Usuario user = await UsuarioNegocio.GetUser(IdUser);
+                            ReunionUsuario ru = new ReunionUsuario();
+                            ru.ReunionId = res.Id;
+                            ru.UsuarioId = IdUser;
+                            ru.Estado = "Enviada";
+                            var ret = await ReunionUsuarioNegocio.Add(ru);
+                        }
                     }
                 } 
                 Dispose();
