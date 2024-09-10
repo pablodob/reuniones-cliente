@@ -96,6 +96,7 @@ namespace Cliente
             a.Estado = label6.Text;
             a.FechaHora = reunion.FechaHora;
             await ReunionNegocio.Update(a);
+            await ReunionUsuarioNegocio.Update(invitacion);
 
             Dispose();
         }
@@ -122,7 +123,6 @@ namespace Cliente
             button6.Enabled = false;
             label12.Text = "Invitación rechazada";
             invitacion.Estado = "Rechazada";
-            await ReunionUsuarioNegocio.Update(invitacion);
         }
 
         private async void button6_Click(object sender, EventArgs e)
@@ -131,7 +131,6 @@ namespace Cliente
             button6.Enabled = false;
             label12.Text = "Invitación aceptada";
             invitacion.Estado = "Aceptada";
-            await ReunionUsuarioNegocio.Update(invitacion);
         }
 
         private async void DataReunionVer_Load(object sender, EventArgs e)
