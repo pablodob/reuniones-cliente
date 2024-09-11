@@ -39,6 +39,7 @@
             comboBox1 = new ComboBox();
             dataGridView1 = new DataGridView();
             panel2 = new Panel();
+            label7 = new Label();
             button5 = new Button();
             label8 = new Label();
             textBox3 = new TextBox();
@@ -52,7 +53,6 @@
             textBox4 = new TextBox();
             textBox2 = new TextBox();
             dataGridView2 = new DataGridView();
-            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -61,7 +61,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(65, 753);
+            button1.Location = new Point(94, 653);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -71,7 +71,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(180, 753);
+            button2.Location = new Point(209, 653);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -92,7 +92,7 @@
             // 
             textBox1.Location = new Point(118, 21);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(180, 23);
+            textBox1.Size = new Size(231, 23);
             textBox1.TabIndex = 4;
             // 
             // label3
@@ -107,7 +107,7 @@
             // 
             dateTimePicker1.CustomFormat = "dddd, dd 'de' MMMM 'de' yyyy '-' HH:mm:ss";
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(19, 91);
+            dateTimePicker1.Location = new Point(40, 91);
             dateTimePicker1.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
             dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
@@ -129,7 +129,7 @@
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new Point(13, 25);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(161, 23);
+            comboBox1.Size = new Size(180, 23);
             comboBox1.TabIndex = 11;
             // 
             // dataGridView1
@@ -137,7 +137,7 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(13, 54);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(273, 232);
+            dataGridView1.Size = new Size(316, 152);
             dataGridView1.TabIndex = 12;
             // 
             // panel2
@@ -146,14 +146,23 @@
             panel2.Controls.Add(dataGridView1);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(comboBox1);
-            panel2.Location = new Point(20, 396);
+            panel2.Location = new Point(20, 394);
             panel2.Name = "panel2";
-            panel2.Size = new Size(295, 301);
+            panel2.Size = new Size(343, 213);
             panel2.TabIndex = 13;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(15, 7);
+            label7.Name = "label7";
+            label7.Size = new Size(58, 15);
+            label7.TabIndex = 17;
+            label7.Text = "Invitados:";
             // 
             // button5
             // 
-            button5.Location = new Point(190, 24);
+            button5.Location = new Point(213, 24);
             button5.Name = "button5";
             button5.Size = new Size(88, 23);
             button5.TabIndex = 0;
@@ -175,13 +184,13 @@
             textBox3.Location = new Point(43, 145);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(237, 36);
+            textBox3.Size = new Size(306, 36);
             textBox3.TabIndex = 14;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(24, 712);
+            label2.Location = new Point(24, 617);
             label2.Name = "label2";
             label2.Size = new Size(77, 15);
             label2.TabIndex = 15;
@@ -190,7 +199,7 @@
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(111, 709);
+            comboBox3.Location = new Point(111, 614);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(195, 23);
             comboBox3.TabIndex = 13;
@@ -204,9 +213,9 @@
             panel1.Controls.Add(textBox4);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(dataGridView2);
-            panel1.Location = new Point(20, 201);
+            panel1.Location = new Point(20, 193);
             panel1.Name = "panel1";
-            panel1.Size = new Size(295, 178);
+            panel1.Size = new Size(343, 205);
             panel1.TabIndex = 16;
             // 
             // button3
@@ -251,14 +260,14 @@
             // 
             textBox4.Location = new Point(71, 47);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(207, 23);
+            textBox4.Size = new Size(258, 23);
             textBox4.TabIndex = 2;
             // 
             // textBox2
             // 
             textBox2.Location = new Point(71, 12);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(207, 23);
+            textBox2.Size = new Size(258, 23);
             textBox2.TabIndex = 1;
             // 
             // dataGridView2
@@ -266,23 +275,14 @@
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(13, 104);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(273, 60);
+            dataGridView2.Size = new Size(316, 91);
             dataGridView2.TabIndex = 0;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(15, 7);
-            label7.Name = "label7";
-            label7.Size = new Size(58, 15);
-            label7.TabIndex = 17;
-            label7.Text = "Invitados:";
             // 
             // DataReunion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 793);
+            ClientSize = new Size(387, 696);
             Controls.Add(panel1);
             Controls.Add(comboBox3);
             Controls.Add(label2);

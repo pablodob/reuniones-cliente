@@ -64,7 +64,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(61, 738);
+            button1.Location = new Point(61, 634);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -74,7 +74,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(421, 738);
+            button2.Location = new Point(421, 634);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -112,7 +112,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(24, 85);
+            label4.Location = new Point(285, 51);
             label4.Name = "label4";
             label4.Size = new Size(101, 15);
             label4.TabIndex = 7;
@@ -121,7 +121,7 @@
             // button3
             // 
             button3.Enabled = false;
-            button3.Location = new Point(142, 50);
+            button3.Location = new Point(163, 33);
             button3.Name = "button3";
             button3.Size = new Size(75, 23);
             button3.TabIndex = 8;
@@ -132,7 +132,7 @@
             // button4
             // 
             button4.Enabled = false;
-            button4.Location = new Point(362, 50);
+            button4.Location = new Point(278, 33);
             button4.Name = "button4";
             button4.Size = new Size(75, 23);
             button4.TabIndex = 9;
@@ -147,15 +147,15 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(button3);
             panel1.Controls.Add(button4);
-            panel1.Location = new Point(33, 109);
+            panel1.Location = new Point(33, 78);
             panel1.Name = "panel1";
-            panel1.Size = new Size(529, 84);
+            panel1.Size = new Size(529, 68);
             panel1.TabIndex = 10;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(95, 32);
+            label6.Location = new Point(163, 8);
             label6.Name = "label6";
             label6.Size = new Size(0, 15);
             label6.TabIndex = 11;
@@ -181,7 +181,7 @@
             // 
             panel2.Controls.Add(label11);
             panel2.Controls.Add(dataGridView1);
-            panel2.Location = new Point(11, 535);
+            panel2.Location = new Point(11, 436);
             panel2.Name = "panel2";
             panel2.Size = new Size(551, 123);
             panel2.TabIndex = 13;
@@ -198,7 +198,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(16, 236);
+            label7.Location = new Point(16, 175);
             label7.Name = "label7";
             label7.Size = new Size(108, 15);
             label7.TabIndex = 11;
@@ -206,17 +206,17 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(16, 260);
+            textBox2.Location = new Point(16, 199);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Escriba aquí la minuta de la reunion realizada";
-            textBox2.Size = new Size(546, 135);
+            textBox2.Size = new Size(546, 108);
             textBox2.TabIndex = 12;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(24, 208);
+            label8.Location = new Point(24, 151);
             label8.Name = "label8";
             label8.Size = new Size(83, 15);
             label8.TabIndex = 13;
@@ -225,7 +225,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(115, 209);
+            label9.Location = new Point(115, 152);
             label9.Name = "label9";
             label9.Size = new Size(40, 15);
             label9.TabIndex = 14;
@@ -234,7 +234,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(131, 85);
+            label10.Location = new Point(392, 51);
             label10.Name = "label10";
             label10.Size = new Size(38, 15);
             label10.TabIndex = 15;
@@ -242,7 +242,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(24, 664);
+            button6.Location = new Point(24, 560);
             button6.Name = "button6";
             button6.Size = new Size(122, 36);
             button6.TabIndex = 16;
@@ -252,7 +252,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(421, 664);
+            button5.Location = new Point(421, 560);
             button5.Name = "button5";
             button5.Size = new Size(122, 36);
             button5.TabIndex = 17;
@@ -263,7 +263,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(243, 675);
+            label12.Location = new Point(243, 571);
             label12.Name = "label12";
             label12.Size = new Size(97, 15);
             label12.TabIndex = 18;
@@ -273,7 +273,7 @@
             // 
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(label13);
-            panel3.Location = new Point(11, 401);
+            panel3.Location = new Point(11, 308);
             panel3.Name = "panel3";
             panel3.Size = new Size(551, 128);
             panel3.TabIndex = 19;
@@ -297,7 +297,7 @@
             // 
             // button7
             // 
-            button7.Location = new Point(224, 722);
+            button7.Location = new Point(224, 618);
             button7.Name = "button7";
             button7.Size = new Size(126, 39);
             button7.TabIndex = 20;
@@ -309,7 +309,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(578, 778);
+            ClientSize = new Size(578, 668);
             Controls.Add(button7);
             Controls.Add(panel3);
             Controls.Add(label12);
