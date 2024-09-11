@@ -82,19 +82,19 @@ namespace Cliente
             List<Usuario> usuarios = new List<Usuario>();
             if (reunionUsuario != null && reunionUsuario.Count > 0)
             {
-                usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
-            }
-
-            return usuarios;
-        }
-
-        public IEnumerable<Usuario> cargarTabla()
-        {
-            return UsuarioNegocio.GetAll().Result;
-        }
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
+                if (invitacion.Estado != "Invitado")
+                {
+                    label12.Text = "Invitación Pendiete";
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                }
+                else if (invitacion.Estado != "Aceptada")
+                {
+                    label12.Text = "Invitación Aceptada";
+                }
+                else if (invitacion.Estado != "Rechazada")
+                {
+                    label12.Text = "Invitación Rechazada";
             if (textBox2.Text == "")
             {
                 MessageBox.Show("Las memorias aún no han sido guardadas");
@@ -105,6 +105,20 @@ namespace Cliente
                 a.Minuta = textBox2.Text;
                 await ReunionNegocio.Update(a);
             }
+            return UsuarioNegocio.GetAll().Result;
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            Reunion a = new Reunion();
+            a.Id = int.Parse(label3.Text);
+            a.Titulo = label1.Text;
+            a.Minuta = textBox2.Text;
+            a.Temas = label9.Text;
+            a.Estado = label6.Text;
+            a.FechaHora = reunion.FechaHora;
+            await ReunionNegocio.Update(a);
+            await ReunionUsuarioNegocio.Update(invitacion);
 
 
             Dispose();
@@ -122,20 +136,6 @@ namespace Cliente
         }
 
         private async void button4_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("¿Desea cancelar la reunión? Esta acción es irreversible.", "Confirmación", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                reunion.Estado = "Cancelada";
-                await ReunionNegocio.Update(reunion);
-
-                Dispose();
-            }
-
-        }
-
-        private async void button5_Click(object sender, EventArgs e)
-        {
             DialogResult result = MessageBox.Show("Esta segur que desea rechazar la invitacion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
@@ -146,23 +146,23 @@ namespace Cliente
                 await ReunionUsuarioNegocio.Update(invitacion);
             }
         }
+                await ReunionNegocio.Update(reunion);
 
-        private async void button6_Click(object sender, EventArgs e)
+                Dispose();
+            }
+
+        }
+
+        private async void button5_Click(object sender, EventArgs e)
         {
             button5.Enabled = false;
             button6.Enabled = false;
-            label12.Text = "Invitación aceptada";
-            invitacion.Estado = "Aceptada";
-            await ReunionUsuarioNegocio.Update(invitacion);
+            label12.Text = "Invitación rechazada";
+            invitacion.Estado = "Rechazada";
         }
 
-        private async void DataReunionVer_Load(object sender, EventArgs e)
+        private async void button6_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            invitados = await getUsuarios(reunion);
-
-            dataGridView1.DataSource = invitados;
-            dataGridView1.Visible = true;
 
             textos = await TextoNegocio.GetbyReunionId(reunion.Id);
             dataGridView2.DataSource = null;
@@ -244,6 +244,20 @@ namespace Cliente
 
                 // Save the document...
                 string filename = reunion.Titulo.Replace(" ", "") + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
+            button6.Enabled = false;
+            label12.Text = "Invitación aceptada";
+            invitacion.Estado = "Aceptada";
+            await ReunionUsuarioNegocio.Update(invitacion);
+        }
+
+        private async void DataReunionVer_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            invitados = await getUsuarios(reunion);
+
+            dataGridView1.DataSource = invitados;
+            dataGridView1.Visible = true;
+        }
 
                 document.Save(filename);
                 // ...and start a viewer.
