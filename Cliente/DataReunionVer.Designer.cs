@@ -54,6 +54,7 @@
             panel3 = new Panel();
             dataGridView2 = new DataGridView();
             label13 = new Label();
+            button7 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -262,7 +263,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(248, 711);
+            label12.Location = new Point(243, 675);
             label12.Name = "label12";
             label12.Size = new Size(97, 15);
             label12.TabIndex = 18;
@@ -294,11 +295,22 @@
             label13.TabIndex = 0;
             label13.Text = "Textos";
             // 
+            // button7
+            // 
+            button7.Location = new Point(224, 722);
+            button7.Name = "button7";
+            button7.Size = new Size(126, 39);
+            button7.TabIndex = 20;
+            button7.Text = "Descargar PDF";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
             // DataReunionVer
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(578, 778);
+            Controls.Add(button7);
             Controls.Add(panel3);
             Controls.Add(label12);
             Controls.Add(button5);
@@ -360,5 +372,6 @@
         private Panel panel3;
         private DataGridView dataGridView2;
         private Label label13;
+        private Button button7;
     }
 }

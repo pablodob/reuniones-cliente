@@ -14,6 +14,10 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
 
 namespace Cliente
 {
@@ -23,6 +27,7 @@ namespace Cliente
         Reunion reunion;
         ReunionUsuario? invitacion;
         List<Texto> textos = new List<Texto>();
+        List<Usuario> invitados = new List<Usuario>();
 
         public DataReunionVer(Reunion reunionAModificar, int? usuarioId)
         {
@@ -172,9 +177,9 @@ namespace Cliente
         private async void DataReunionVer_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-            List<Usuario> usuarios = await getUsuarios(reunion);
+            invitados = await getUsuarios(reunion);
 
-            dataGridView1.DataSource = usuarios;
+            dataGridView1.DataSource = invitados;
             dataGridView1.Visible = true;
 
             textos = await TextoNegocio.GetbyReunionId(reunion.Id);
@@ -182,5 +187,65 @@ namespace Cliente
             dataGridView2.DataSource = textos;
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (reunion != null && reunion.Minuta != null)
+            {
+                // Create a new PDF document
+                PdfDocument document = new PdfDocument();
+
+                // Create an empty page
+                PdfPage page = document.AddPage();
+
+                // Get an XGraphics object for drawing
+                XGraphics gfx = XGraphics.FromPdfPage(page);
+
+                // Create a font
+                XFont fontTitle = new XFont("Verdana", 20);
+                XFont fontText = new XFont("Verdana", 12);
+
+                double y = 40; // Start at the top of the page
+
+                gfx.DrawString("Título:" + reunion.Titulo, fontTitle, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopCenter);
+                y += 50;
+                gfx.DrawString("Fecha y hora:" + reunion.FechaHora.ToString(), fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString("Estado:" + reunion.Estado, fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString("Temas:" + reunion.Temas, fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                y += 25;
+                gfx.DrawString("Invitados:", fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                foreach (Usuario inv in invitados)
+                {
+                    y += 18;
+                    gfx.DrawString("* Nombre: " + inv.Nombre + " | Usuario: " + inv.NombreUsuario, fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                }
+                y += 25;
+                gfx.DrawString("Textos:", fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                foreach (Texto tex in textos)
+                {
+                    y += 18;
+                    gfx.DrawString("* " + tex.Titulo + " | Link: " + tex.Link, fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                }
+                y += 25;
+                gfx.DrawString("Minuta:", fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+                y += 18;
+                gfx.DrawString(reunion.Minuta, fontText, XBrushes.Black, new XRect(0, y, page.Width.Point, page.Height.Point), XStringFormats.TopLeft);
+
+
+                // Save the document...
+                string filename = reunion.Titulo.Replace(" ", "") + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
+
+                document.Save(filename);
+                // ...and start a viewer.
+                string pdfViewerPath = @"C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe";
+                Process.Start(pdfViewerPath, filename);
+                //Process.Start(filename);
+            }
+            else
+            {
+                MessageBox.Show("La reunión debe tener minuta para emitir el informe.");
+            }
+        }
     }
 }
