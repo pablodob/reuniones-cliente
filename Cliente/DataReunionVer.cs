@@ -41,14 +41,14 @@ namespace Cliente
             textBox2.Text = reunionAModificar.Minuta;
             label9.Text = reunionAModificar.Temas;
             label10.Text = reunionAModificar.FechaHora.ToString();
+            textBox2.Enabled = false;
 
             if (reunionAModificar.Estado == "Programada")
-            {
-                textBox2.Enabled = false;
+            {   
                 button3.Enabled = true;
                 button4.Enabled = true;
             }
-            if (usuarioId == reunionAModificar.CoordinadorId)
+            if (usuarioId == reunionAModificar.CoordinadorId && reunionAModificar.Estado == "Realizada")
             {
                 textBox2.Enabled = true;
             }
@@ -60,43 +60,17 @@ namespace Cliente
             List<Usuario> usuarios = new List<Usuario>();
             if (reunionUsuario != null && reunionUsuario.Count > 0)
             {
-                invitacion = reunionUsuario.Where(ru => ru.UsuarioId == usuarioId).ToList()[0];
-                if (invitacion.Estado != "Invitado")
-                {
-                    label12.Text = "Invitación Pendiete";
-                    button5.Enabled = false;
-                    button6.Enabled = false;
-                }
-                else if (invitacion.Estado != "Aceptada")
-                {
-                    label12.Text = "Invitación Aceptada";
-                }
-                else if (invitacion.Estado != "Rechazada")
-                {
-                    label12.Text = "Invitación Rechazada";
-                }
-                usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
+                usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList()!;
             }
 
             return usuarios;
         }
 
-        public IEnumerable<Usuario> cargarTabla()
-        {
-            return UsuarioNegocio.GetAll().Result;
-        }
-
         private async void button1_Click(object sender, EventArgs e)
         {
-            Reunion a = new Reunion();
-            a.Id = int.Parse(label3.Text);
-            a.Titulo = label1.Text;
+            Reunion a = reunion;
             a.Minuta = textBox2.Text;
-            a.Temas = label9.Text;
-            a.Estado = label6.Text;
-            a.FechaHora = reunion.FechaHora;
             await ReunionNegocio.Update(a);
-            await ReunionUsuarioNegocio.Update(invitacion);
 
             Dispose();
         }
@@ -109,6 +83,10 @@ namespace Cliente
         private void button3_Click(object sender, EventArgs e)
         {
             label6.Text = "Realizada";
+            if (usuarioId == reunion.CoordinadorId)
+            {
+                textBox2.Enabled = true;
+            }
             textBox2.Enabled = true;
         }
 
@@ -123,6 +101,7 @@ namespace Cliente
             button6.Enabled = false;
             label12.Text = "Invitación rechazada";
             invitacion.Estado = "Rechazada";
+            await ReunionUsuarioNegocio.Update(invitacion);
         }
 
         private async void button6_Click(object sender, EventArgs e)
@@ -131,6 +110,7 @@ namespace Cliente
             button6.Enabled = false;
             label12.Text = "Invitación aceptada";
             invitacion.Estado = "Aceptada";
+            await ReunionUsuarioNegocio.Update(invitacion);
         }
 
         private async void DataReunionVer_Load(object sender, EventArgs e)
@@ -140,6 +120,34 @@ namespace Cliente
 
             dataGridView1.DataSource = usuarios;
             dataGridView1.Visible = true;
+
+
+            IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            invitacion = reunionUsuarios.FirstOrDefault(ru => ru.UsuarioId == usuarioId);
+            if (invitacion == null)
+            {
+                button5.Enabled = false;
+                button6.Enabled = false;
+            }
+            else
+            {
+                if (invitacion.Estado == "Pendiente")
+                {
+                    label12.Text = "Invitación Pendiente";
+                }
+                else if (invitacion.Estado == "Aceptada")
+                {
+                    label12.Text = "Invitación Aceptada";
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                }
+                else if (invitacion.Estado == "Rechazada")
+                {
+                    label12.Text = "Invitación Rechazada";
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                }
+            }
         }
 
     }

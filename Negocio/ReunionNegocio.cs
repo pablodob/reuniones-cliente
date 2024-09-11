@@ -12,7 +12,7 @@ namespace Negocio
     public class ReunionNegocio //venia x default con internal, la puse public como la de usuario
     {
         static readonly string defaultURL = "http://localhost:5275/api/Reunion/";
-        public async static Task<IEnumerable<Reunion>> GetAll()
+        public async static Task<List<Reunion>> GetAll()
         {
             var response = await Conexion.Instancia.Cliente.GetStringAsync(defaultURL);
             var data = JsonConvert.DeserializeObject<List<Reunion>>(response);
