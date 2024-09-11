@@ -15,18 +15,17 @@ namespace Cliente
     public partial class FormReuniones : Form
     {
         private int? usuarioId { get; set; }
-        private Task<List<Reunion>>? reuniones;
+        private List<Reunion>? reuniones;
+        private List<Reunion>? reunioneslistadas;
 
         public FormReuniones()
         {
             InitializeComponent();
-            reuniones = ReunionNegocio.GetAll();
         }
 
         public FormReuniones(bool isAdmin, int? userId)
         {
             InitializeComponent();
-            reuniones = ReunionNegocio.GetAll();
             if (!isAdmin)
             {
                 button1.Visible = false;
@@ -47,7 +46,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataReunionVer(reuniones.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
+                new DataReunionVer(reunioneslistadas[filaSeleccionada], usuarioId).ShowDialog();
                 button5_Click(sender, e);
             }
             else
@@ -62,9 +61,9 @@ namespace Cliente
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
                 DateTime now = DateTime.Now;
-                if (reuniones.Result.ToList()[filaSeleccionada].FechaHora > now || reuniones.Result.ToList()[filaSeleccionada].FechaHora == null)
+                if (reunioneslistadas[filaSeleccionada].FechaHora > now || reunioneslistadas[filaSeleccionada].FechaHora == null)
                 {
-                    new DataReunion(reuniones.Result.ToList()[filaSeleccionada], usuarioId).ShowDialog();
+                    new DataReunion(reunioneslistadas[filaSeleccionada], usuarioId).ShowDialog();
                     button5_Click(sender, e);
                 }
                 else
@@ -83,7 +82,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                await ReunionNegocio.Delete(reuniones.Result.ToList()[filaSeleccionada]);
+                await ReunionNegocio.Delete(reunioneslistadas[filaSeleccionada]);
                 button5_Click(sender, e);
             }
             else
@@ -94,32 +93,36 @@ namespace Cliente
 
         private async void button5_Click(object sender, EventArgs e) //boton para listar
         {
-            List<Reunion> reus = await ReunionNegocio.GetAll();
-            dataGridView1.DataSource = reus;
+            reuniones = await ReunionNegocio.GetAll();
+            reunioneslistadas = reuniones;
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = reunioneslistadas;
         }
 
         private async void FormReuniones_Load_1(object sender, EventArgs e)
         {
-            List<Reunion> reus = await ReunionNegocio.GetAll();
-            dataGridView1.DataSource = reus;
+            reuniones = await ReunionNegocio.GetAll();
+            reunioneslistadas = reuniones;
+            dataGridView1.DataSource = reunioneslistadas;
         }
 
         private async void button5_Click_1(object sender, EventArgs e)
         {
             if (reuniones != null)
             {
-                List<Reunion> reus = await reuniones;
                 List<Reunion> reusPendientes = new List<Reunion>();
-                foreach (Reunion r in reus)
+                foreach (Reunion r in reuniones)
                 {
                     IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(r.Id);
-                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault();
+                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault(ru => ru.UsuarioId == usuarioId);
                     if (invitacion != null && invitacion.Estado == "Pendiente")
                     {
                         reusPendientes.Add(r);
                     }
                 }
+                dataGridView1.DataSource = null;
                 dataGridView1.DataSource = reusPendientes;
+                reunioneslistadas = reusPendientes;
             }
         }
 
@@ -127,18 +130,19 @@ namespace Cliente
         {
             if (reuniones != null)
             {
-                List<Reunion> reus = await reuniones;
                 List<Reunion> reusPendientes = new List<Reunion>();
-                foreach (Reunion r in reus)
+                foreach (Reunion r in reuniones)
                 {
                     IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(r.Id);
-                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault();
+                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault(ru => ru.UsuarioId == usuarioId);
                     if (invitacion != null && invitacion.Estado == "Aceptada")
                     {
                         reusPendientes.Add(r);
                     }
                 }
+                dataGridView1.DataSource = null;
                 dataGridView1.DataSource = reusPendientes;
+                reunioneslistadas = reusPendientes;
             }
 
         }
@@ -147,20 +151,20 @@ namespace Cliente
         {
             if (reuniones != null)
             {
-                List<Reunion> reus = await reuniones;
                 List<Reunion> reusPendientes = new List<Reunion>();
-                foreach (Reunion r in reus)
+                foreach (Reunion r in reuniones)
                 {
                     IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(r.Id);
-                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault();
+                    ReunionUsuario? invitacion = reunionUsuarios.FirstOrDefault(ru => ru.UsuarioId == usuarioId);
                     if (invitacion != null && invitacion.Estado == "Rechazada")
                     {
                         reusPendientes.Add(r);
                     }
                 }
+                dataGridView1.DataSource = null;
                 dataGridView1.DataSource = reusPendientes;
+                reunioneslistadas = reusPendientes;
             }
-
         }
     }
 }

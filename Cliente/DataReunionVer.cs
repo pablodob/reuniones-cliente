@@ -34,6 +34,7 @@ namespace Cliente
             InitializeComponent();
             this.usuarioId = usuarioId;
             reunion = reunionAModificar;
+            
             label1.Text = reunionAModificar.Titulo;
             label3.Text = Convert.ToString(reunionAModificar.Id);
             label6.Text = reunionAModificar.Estado;
@@ -81,21 +82,6 @@ namespace Cliente
             List<Usuario> usuarios = new List<Usuario>();
             if (reunionUsuario != null && reunionUsuario.Count > 0)
             {
-                invitacion = reunionUsuario.Where(ru => ru.UsuarioId == usuarioId).ToList()[0];
-                if (invitacion.Estado != "Invitado")
-                {
-                    label12.Text = "Invitación Pendiete";
-                    button5.Enabled = false;
-                    button6.Enabled = false;
-                }
-                else if (invitacion.Estado != "Aceptada")
-                {
-                    label12.Text = "Invitación Aceptada";
-                }
-                else if (invitacion.Estado != "Rechazada")
-                {
-                    label12.Text = "Invitación Rechazada";
-                }
                 usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
             }
 
@@ -123,7 +109,6 @@ namespace Cliente
                 a.Estado = label6.Text;
                 a.FechaHora = reunion.FechaHora;
                 await ReunionNegocio.Update(a);
-                await ReunionUsuarioNegocio.Update(invitacion);
             }
 
 
@@ -163,6 +148,7 @@ namespace Cliente
                 button6.Enabled = false;
                 label12.Text = "Invitación rechazada";
                 invitacion.Estado = "Rechazada";
+                await ReunionUsuarioNegocio.Update(invitacion);
             }
         }
 
@@ -172,6 +158,7 @@ namespace Cliente
             button6.Enabled = false;
             label12.Text = "Invitación aceptada";
             invitacion.Estado = "Aceptada";
+            await ReunionUsuarioNegocio.Update(invitacion);
         }
 
         private async void DataReunionVer_Load(object sender, EventArgs e)
@@ -185,6 +172,33 @@ namespace Cliente
             textos = await TextoNegocio.GetbyReunionId(reunion.Id);
             dataGridView2.DataSource = null;
             dataGridView2.DataSource = textos;
+
+            IEnumerable<ReunionUsuario> reunionUsuarios = await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            invitacion = reunionUsuarios.FirstOrDefault(ru => ru.UsuarioId == usuarioId);
+            if (invitacion == null)
+            {
+                button5.Enabled = false;
+                button6.Enabled = false;
+            }
+            else
+            {
+                if (invitacion.Estado == "Pendiente")
+                {
+                    label12.Text = "Invitación Pendiente";
+                }
+                else if (invitacion.Estado == "Aceptada")
+                {
+                    label12.Text = "Invitación Aceptada";
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                }
+                else if (invitacion.Estado == "Rechazada")
+                {
+                    label12.Text = "Invitación Rechazada";
+                    button5.Enabled = false;
+                    button6.Enabled = false;
+                }
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)

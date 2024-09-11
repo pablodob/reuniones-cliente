@@ -40,7 +40,7 @@ namespace Cliente
                     if (ru.Reunion != null && ru.Estado == "Enviada")
                     {
                         MessageBox.Show("Usted a sido invitado a la reunión " + ru.Reunion.Titulo + " a realizarse el " + ru.Reunion.FechaHora.ToString(), "Nueva reunión", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ru.Estado = "Abierta";
+                        ru.Estado = "Pendiente";
                         await ReunionUsuarioNegocio.Update(ru);
                     }
                 }
