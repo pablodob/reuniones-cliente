@@ -101,13 +101,8 @@ namespace Cliente
             }
             else
             {
-                Reunion a = new Reunion();
-                a.Id = int.Parse(label3.Text);
-                a.Titulo = label1.Text;
+                Reunion a = reunion;
                 a.Minuta = textBox2.Text;
-                a.Temas = label9.Text;
-                a.Estado = label6.Text;
-                a.FechaHora = reunion.FechaHora;
                 await ReunionNegocio.Update(a);
             }
 
