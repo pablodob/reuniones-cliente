@@ -100,6 +100,7 @@
             Name = "Main";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestor de reuniones";
+            Load += Main_Load;
             menu.ResumeLayout(false);
             menu.PerformLayout();
             menuStrip1.ResumeLayout(false);

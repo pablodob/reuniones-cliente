@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Microsoft.VisualBasic.ApplicationServices;
 using Negocio;
 using System;
 using System.Collections;
@@ -20,6 +21,7 @@ namespace Cliente
     public partial class DataReunionVer : Form
     {
         int? usuarioId;
+        Usuario? usuario;
         Reunion reunion;
         ReunionUsuario? invitacion;
 
@@ -43,15 +45,6 @@ namespace Cliente
             label10.Text = reunionAModificar.FechaHora.ToString();
             textBox2.Enabled = false;
 
-            if (reunionAModificar.Estado == "Programada")
-            {   
-                button3.Enabled = true;
-                button4.Enabled = true;
-            }
-            if (usuarioId == reunionAModificar.CoordinadorId && reunionAModificar.Estado == "Realizada")
-            {
-                textBox2.Enabled = true;
-            }
         }
 
         private async Task<List<Usuario>> getUsuarios(Reunion reunion)
@@ -146,6 +139,22 @@ namespace Cliente
                     label12.Text = "Invitación Rechazada";
                     button5.Enabled = false;
                     button6.Enabled = false;
+                }
+            }
+
+            if (usuarioId != null) { 
+                usuario = await UsuarioNegocio.GetMyUser();
+                if (usuario.Role == 0 || usuarioId == reunion.CoordinadorId)
+                {
+                    if (reunion.Estado == "Programada")
+                    {
+                        button3.Enabled = true;
+                        button4.Enabled = true;
+                    }
+                    if (usuarioId == reunion.CoordinadorId && reunion.Estado == "Realizada")
+                    {
+                        textBox2.Enabled = true;
+                    }
                 }
             }
         }

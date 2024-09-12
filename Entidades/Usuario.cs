@@ -11,6 +11,8 @@ namespace Entidades
 
         public string? Password { get; set; }
 
+        public int? Role { get; set; }
+
         [Key]
         public int Id { get; set; }
 

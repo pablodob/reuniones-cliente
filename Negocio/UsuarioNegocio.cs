@@ -42,5 +42,12 @@ namespace Negocio
             var data = JsonConvert.DeserializeObject<Usuario>(response);
             return data;
         }
+
+        public async static Task<Usuario> GetMyUser()
+        {
+            var response = await Conexion.Instancia.Cliente.GetStringAsync(defaultURL + "my");
+            var data = JsonConvert.DeserializeObject<Usuario>(response);
+            return data;
+        }
     }
 }
