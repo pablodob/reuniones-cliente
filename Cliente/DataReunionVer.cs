@@ -28,6 +28,7 @@ namespace Cliente
         ReunionUsuario? invitacion;
         List<Texto> textos = new List<Texto>();
         List<Usuario> invitados = new List<Usuario>();
+        Usuario? usuario;
 
         public DataReunionVer(Reunion reunionAModificar, int? usuarioId)
         {
@@ -48,23 +49,6 @@ namespace Cliente
             textBox2.Text = reunionAModificar.Minuta;
             label9.Text = reunionAModificar.Temas;
             label10.Text = reunionAModificar.FechaHora.ToString();
-
-            if (reunionAModificar.Estado == "Programada")
-            {
-                textBox2.Enabled = false;
-                button3.Enabled = true;
-                button4.Enabled = true;
-            }
-            if (reunionAModificar.FechaHora <= DateTime.Now)
-            {
-                button5.Enabled = false;
-                button6.Enabled = false;
-            }
-
-            if (usuarioId == reunionAModificar.CoordinadorId)
-            {
-                textBox2.Enabled = true;
-            }
 
             dataGridView2.AutoGenerateColumns = false;
             dataGridView2.Columns.Add("Titulo", "Titulo");
@@ -192,6 +176,23 @@ namespace Cliente
                     label12.Text = "Invitación Rechazada";
                     button5.Enabled = false;
                     button6.Enabled = false;
+                }
+            }
+
+            if (usuarioId != null)
+            {
+                usuario = await UsuarioNegocio.GetMyUser();
+                if (usuario.Role == 0 || usuarioId == reunion.CoordinadorId)
+                {
+                    if (reunion.Estado == "Programada")
+                    {
+                        button3.Enabled = true;
+                        button4.Enabled = true;
+                    }
+                    if (usuarioId == reunion.CoordinadorId && reunion.Estado == "Realizada")
+                    {
+                        textBox2.Enabled = true;
+                    }
                 }
             }
         }

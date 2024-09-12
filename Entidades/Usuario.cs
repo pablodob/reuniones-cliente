@@ -8,7 +8,7 @@ namespace Entidades
 
         public string? Nombre { get; set; }
         public string? NombreUsuario { get; set; }
-
+        public int? Role {  get; set; }
         public string? Password { get; set; }
 
         [Key]
