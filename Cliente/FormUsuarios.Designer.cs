@@ -30,10 +30,10 @@
         {
             dataGridView1 = new DataGridView();
             button1 = new Button();
-            button2 = new Button();
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
+            button5 = new Button();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -61,25 +61,15 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
-            // 
-            button2.Location = new Point(21, 74);
-            button2.Name = "button2";
-            button2.Size = new Size(125, 23);
-            button2.TabIndex = 2;
-            button2.Text = "Agregar usuario";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
             // button3
             // 
-            button3.Location = new Point(21, 113);
+            button3.Location = new Point(21, 76);
             button3.Name = "button3";
             button3.Size = new Size(125, 23);
             button3.TabIndex = 3;
-            button3.Text = "Modificar usuario";
+            button3.Text = "Hacer admin";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_1;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
@@ -94,15 +84,25 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button5);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button4);
-            panel1.Controls.Add(button2);
             panel1.Controls.Add(button3);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(167, 314);
             panel1.TabIndex = 5;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(20, 114);
+            button5.Name = "button5";
+            button5.Size = new Size(125, 23);
+            button5.TabIndex = 5;
+            button5.Text = "Deshacer admin";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // panel2
             // 
@@ -140,5 +140,6 @@
         private Button button4;
         private Panel panel1;
         private Panel panel2;
+        private Button button5;
     }
 }
