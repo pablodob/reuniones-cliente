@@ -11,59 +11,21 @@ using System.Windows.Forms;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Negocio;
+using Entidades;
 
 namespace Cliente
 {
     public partial class Main : Form
     {
-        private string? Token { get; set; }
         private int? userId { get; set; }
         private string? userName { get; set; }
         private bool isAdmin { get; set; }
 
-        string securityKey = "LoshermanosseanunidosporqueesaeslaleyprimerA";
+        private Usuario usuario = new Usuario();
+
         public Main()
         {
-            this.Token = Conexion.mytoken;
             InitializeComponent();
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey)),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
-            };
-
-            var principal = tokenHandler.ValidateToken(Token, tokenValidationParameters, out SecurityToken securityToken);
-
-            // El payload del token está en principal.Claims
-            userId = int.Parse(principal.FindFirst("usuarioId")?.Value);
-            userName = principal.FindFirst("nombreUsuario")?.Value;
-            string strisAdmin = principal.FindFirst("isAdmin")?.Value;
-            if (strisAdmin == "1")
-            {
-                isAdmin = true;
-            }
-            else
-            {
-                isAdmin = false;
-            }
-
-            string dataInfo = "Id: " + userId.ToString() + " | Usuario: " + userName + " | Rol: ";
-            if (isAdmin)
-            {
-                dataInfo += "Administrador";
-            }
-            else
-            {
-                dataInfo += "Usuario";
-                this.botonUsuarios.Visible = false;
-            }
-            this.label1.Text = dataInfo;
         }
 
         private void botonUsuarios_Click(object sender, EventArgs e)
@@ -75,18 +37,45 @@ namespace Cliente
 
         private void botonReuniones_Click(object sender, EventArgs e)
         {
-            FormReuniones formReuniones = new FormReuniones(isAdmin, userId);
+            FormReuniones formReuniones = new FormReuniones(isAdmin, usuario.Id);
             formReuniones.MdiParent = this;
             formReuniones.Show();
         }
 
         private void iToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (userId != null) { 
+            if (userId != null)
+            {
                 InfoUser infouser = new InfoUser((int)userId, isAdmin);
                 infouser.MdiParent = this;
                 infouser.Show();
             }
+        }
+
+        private async void Main_Load(object sender, EventArgs e)
+        {
+            usuario = await UsuarioNegocio.GetMyUser();
+            userId = usuario.Id;
+            userName = usuario.NombreUsuario;
+            if (usuario.Role == 0)
+            {
+                isAdmin = true;
+            }
+            else
+            {
+                isAdmin = false;
+            }
+            string dataInfo = "Id: " + userId.ToString() + " | Usuario: " + userName + " | Rol: ";
+            if (isAdmin)
+            {
+                dataInfo += "Administrador";
+            }
+            else
+            {
+                dataInfo += "Usuario";
+                this.botonUsuarios.Visible = false;
+            }
+            this.label1.Text = dataInfo;
         }
     }
 }
