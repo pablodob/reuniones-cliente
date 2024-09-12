@@ -66,9 +66,9 @@
             button3.Name = "button3";
             button3.Size = new Size(125, 23);
             button3.TabIndex = 3;
-            button3.Text = "Modificar usuario";
+            button3.Text = "Hacer admin";
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click_1;
+            button3.Click += button3_Click;
             // 
             // button4
             // 
