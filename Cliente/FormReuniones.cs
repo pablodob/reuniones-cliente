@@ -21,6 +21,17 @@ namespace Cliente
         public FormReuniones()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Add("Titulo", "Titulo");
+            dataGridView1.Columns.Add("Estado", "Estado");
+            dataGridView1.Columns.Add("Temas", "Temas");
+            dataGridView1.Columns.Add("FechaHora", "FechaHora");
+            dataGridView1.Columns.Add("Coordinador", "Coordinador");
+            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView1.Columns["Estado"].DataPropertyName = "Estado";
+            dataGridView1.Columns["Temas"].DataPropertyName = "Temas";
+            dataGridView1.Columns["FechaHora"].DataPropertyName = "FechaHora";
+            dataGridView1.Columns["Coordinador"].DataPropertyName = "Coordinador";
         }
 
         public FormReuniones(bool isAdmin, int? userId)
@@ -33,6 +44,17 @@ namespace Cliente
                 button4.Visible = false;
             }
             usuarioId = userId;
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Add("Titulo", "Titulo");
+            dataGridView1.Columns.Add("Estado", "Estado");
+            dataGridView1.Columns.Add("Temas", "Temas");
+            dataGridView1.Columns.Add("FechaHora", "FechaHora");
+            dataGridView1.Columns.Add("Coordinador", "Coordinador");
+            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView1.Columns["Estado"].DataPropertyName = "Estado";
+            dataGridView1.Columns["Temas"].DataPropertyName = "Temas";
+            dataGridView1.Columns["FechaHora"].DataPropertyName = "FechaHora";
+            dataGridView1.Columns["Coordinador"].DataPropertyName = "Coordinador";
         }
 
         private void button1_Click(object sender, EventArgs e) // crear nueva reunion

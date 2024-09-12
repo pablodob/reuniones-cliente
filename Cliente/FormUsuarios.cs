@@ -5,39 +5,40 @@ namespace Cliente
 {
     public partial class FormUsuarios : Form
     {
-        private Task<IEnumerable<Usuario>>? usuarios;
+        private List<Usuario>? usuarios;
 
         public FormUsuarios()
         {
             InitializeComponent();
-            usuarios = UsuarioNegocio.GetAll();
-        }
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.Columns.Add("Nombre", "Nombre");
+            dataGridView1.Columns.Add("NombreUsuario", "Usuario");
+            dataGridView1.Columns.Add("Id", "Id");
+            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
+            dataGridView1.Columns["Id"].DataPropertyName = "Id";
 
-        public IEnumerable<Usuario> cargarTabla()
-        {
-            usuarios = UsuarioNegocio.GetAll();
-            return usuarios.Result;
         }
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
-            task.Start();
-            dataGridView1.DataSource = await task;
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            new DataUsuario().ShowDialog();
-            button1_Click(sender, e);
+            usuarios = (List<Usuario>)await UsuarioNegocio.GetAll();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = usuarios;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataUsuario(usuarios.Result.ToList()[filaSeleccionada]).ShowDialog();
-                button1_Click(sender, e);
+                Usuario u = usuarios[filaSeleccionada];
+                if (u.Role == 1)
+                {
+                    u.Role = 0;
+                    await UsuarioNegocio.Update(u);
+                    button1_Click(sender, e);
+                }
             }
             else
             {
@@ -49,7 +50,7 @@ namespace Cliente
             if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
             {
                 int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                await UsuarioNegocio.Delete(usuarios.Result.ToList()[filaSeleccionada]);
+                await UsuarioNegocio.Delete(usuarios[filaSeleccionada]);
                 button1_Click(sender, e);
             }
             else
@@ -58,25 +59,11 @@ namespace Cliente
             }
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
-            {
-                int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
-                new DataUsuario(usuarios.Result.ToList()[filaSeleccionada]).ShowDialog();
-                button1_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un usuario para modificarlo");
-            }
-        }
-
         private async void Form1_Load(object sender, EventArgs e)
         {
-            Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
-            task.Start();
-            dataGridView1.DataSource = await task;
+            usuarios = (List<Usuario>)await UsuarioNegocio.GetAll();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = usuarios;
         }
     }
 }
