@@ -33,6 +33,7 @@
             button3 = new Button();
             button4 = new Button();
             panel1 = new Panel();
+            button2 = new Button();
             panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -72,7 +73,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(21, 113);
+            button4.Location = new Point(21, 153);
             button4.Name = "button4";
             button4.Size = new Size(125, 23);
             button4.TabIndex = 4;
@@ -83,6 +84,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -91,6 +93,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(167, 314);
             panel1.TabIndex = 5;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(21, 113);
+            button2.Name = "button2";
+            button2.Size = new Size(125, 23);
+            button2.TabIndex = 5;
+            button2.Text = "Dehacer admin";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // panel2
             // 
@@ -127,5 +139,6 @@
         private Button button4;
         private Panel panel1;
         private Panel panel2;
+        private Button button2;
     }
 }

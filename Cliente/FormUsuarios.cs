@@ -65,5 +65,25 @@ namespace Cliente
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = usuarios;
         }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0) //verifica que haya una fila seleccionada
+            {
+                Usuario myUser = await UsuarioNegocio.GetMyUser();
+                int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
+                Usuario u = usuarios[filaSeleccionada];
+                if (u.Role == 0 && u.Id != myUser.Id)
+                {
+                    u.Role = 1;
+                    await UsuarioNegocio.Update(u);
+                    button1_Click(sender, e);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un usuario para modificarlo");
+            }
+        }
     }
 }
