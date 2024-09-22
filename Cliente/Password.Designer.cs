@@ -123,6 +123,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "Password";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Cambio de contraseña";
             ResumeLayout(false);
             PerformLayout();

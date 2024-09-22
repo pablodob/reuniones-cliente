@@ -57,7 +57,7 @@
             // 
             // listarbutton
             // 
-            listarbutton.Location = new Point(33, 219);
+            listarbutton.Location = new Point(30, 36);
             listarbutton.Name = "listarbutton";
             listarbutton.Size = new Size(105, 23);
             listarbutton.TabIndex = 5;
@@ -67,7 +67,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(33, 153);
+            button4.Location = new Point(30, 197);
             button4.Name = "button4";
             button4.Size = new Size(105, 23);
             button4.TabIndex = 4;
@@ -77,7 +77,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(33, 114);
+            button3.Location = new Point(30, 158);
             button3.Name = "button3";
             button3.Size = new Size(105, 23);
             button3.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(33, 75);
+            button2.Location = new Point(29, 120);
             button2.Name = "button2";
             button2.Size = new Size(105, 23);
             button2.TabIndex = 2;
@@ -97,7 +97,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(33, 37);
+            button1.Location = new Point(30, 82);
             button1.Name = "button1";
             button1.Size = new Size(105, 23);
             button1.TabIndex = 1;

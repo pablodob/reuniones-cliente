@@ -63,7 +63,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(21, 76);
+            button3.Location = new Point(21, 82);
             button3.Name = "button3";
             button3.Size = new Size(125, 23);
             button3.TabIndex = 3;
@@ -73,7 +73,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(21, 152);
+            button4.Location = new Point(21, 158);
             button4.Name = "button4";
             button4.Size = new Size(125, 23);
             button4.TabIndex = 4;
@@ -96,7 +96,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(20, 114);
+            button5.Location = new Point(20, 120);
             button5.Name = "button5";
             button5.Size = new Size(125, 23);
             button5.TabIndex = 5;
