@@ -49,7 +49,7 @@ namespace Cliente
             dataGridView1.Columns.Add("Temas", "Temas");
             dataGridView1.Columns.Add("FechaHora", "FechaHora");
             dataGridView1.Columns.Add("Coordinador", "Coordinador");
-            dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView1.Columns["Titulo"].DataPropertyName = "Titulo";
             dataGridView1.Columns["Estado"].DataPropertyName = "Estado";
             dataGridView1.Columns["Temas"].DataPropertyName = "Temas";
             dataGridView1.Columns["FechaHora"].DataPropertyName = "FechaHora";
