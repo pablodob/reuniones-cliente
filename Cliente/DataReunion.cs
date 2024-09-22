@@ -155,6 +155,7 @@ namespace Cliente
                     a.Temas = textBox3.Text;
                     a.FechaHora = dateTimePicker1.Value;
                     a.CoordinadorId = ((Usuario)comboBox3.SelectedItem).Id;
+
                     await ReunionNegocio.Update(a);
 
                     foreach (DataGridViewRow row in dataGridView1.Rows)

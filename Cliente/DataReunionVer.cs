@@ -120,7 +120,7 @@ namespace Cliente
 
         private async void button5_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Esta segur que desea rechazar la invitacion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Esta seguro que desea rechazar la invitacion?", "Confirmacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 button5.Enabled = false;

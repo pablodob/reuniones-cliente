@@ -37,7 +37,7 @@ namespace Cliente
         private void button1_Click(object sender, EventArgs e)
         {
             Password cambiopassword = new Password(usuario.NombreUsuario);
-            cambiopassword.Show();
+            cambiopassword.ShowDialog();
         }
 
         private async void InfoUser_Load(object sender, EventArgs e)
