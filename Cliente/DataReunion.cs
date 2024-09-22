@@ -107,7 +107,7 @@ namespace Cliente
         {
             Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
             task.Start();
-            
+
             comboBox1.DataSource = await task;
             comboBox1.DisplayMember = "Nombre";
             comboBox1.ValueMember = "Id";
@@ -122,7 +122,7 @@ namespace Cliente
             label7.ForeColor = Color.Black;
             label8.ForeColor = Color.Black;
             bool faltanDatos = false;
-            if(textBox1.Text == "")
+            if (textBox1.Text == "")
             {
                 label1.ForeColor = Color.Red;
                 faltanDatos = true;
@@ -267,6 +267,11 @@ namespace Cliente
             textBox2.Text = "";
             textBox4.Text = "";
             checkBox1.Checked = false;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

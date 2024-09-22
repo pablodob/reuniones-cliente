@@ -61,7 +61,7 @@ namespace Cliente
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-           // new DataUsuario().ShowDialog();
+           new DataUsuario().ShowDialog();
         }
     }
 }
