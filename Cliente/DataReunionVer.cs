@@ -197,6 +197,10 @@ namespace Cliente
                 if (invitacion.Estado == "Pendiente")
                 {
                     label12.Text = "Invitación Pendiente";
+                    if (reunion.FechaHora != null && (reunion.FechaHora <= DateTime.Now)){
+                        button5.Enabled = false;
+                        button6.Enabled = false;
+                    }
                 }
                 else if (invitacion.Estado == "Aceptada")
                 {
