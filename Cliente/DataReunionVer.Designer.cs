@@ -183,7 +183,7 @@
             // 
             panel2.Controls.Add(label11);
             panel2.Controls.Add(dataGridView1);
-            panel2.Location = new Point(11, 447);
+            panel2.Location = new Point(11, 430);
             panel2.Name = "panel2";
             panel2.Size = new Size(551, 123);
             panel2.TabIndex = 13;
@@ -212,7 +212,7 @@
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.PlaceholderText = "Escriba aquí la minuta de la reunion realizada";
-            textBox2.Size = new Size(546, 108);
+            textBox2.Size = new Size(546, 93);
             textBox2.TabIndex = 12;
             // 
             // label8
@@ -244,7 +244,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(24, 571);
+            button6.Location = new Point(24, 554);
             button6.Name = "button6";
             button6.Size = new Size(122, 36);
             button6.TabIndex = 16;
@@ -254,7 +254,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(421, 571);
+            button5.Location = new Point(421, 554);
             button5.Name = "button5";
             button5.Size = new Size(122, 36);
             button5.TabIndex = 17;
@@ -265,7 +265,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(243, 582);
+            label12.Location = new Point(243, 565);
             label12.Name = "label12";
             label12.Size = new Size(97, 15);
             label12.TabIndex = 18;
@@ -275,7 +275,7 @@
             // 
             panel3.Controls.Add(dataGridView2);
             panel3.Controls.Add(label13);
-            panel3.Location = new Point(11, 319);
+            panel3.Location = new Point(11, 302);
             panel3.Name = "panel3";
             panel3.Size = new Size(551, 128);
             panel3.TabIndex = 19;
@@ -299,9 +299,9 @@
             // 
             // button7
             // 
-            button7.Location = new Point(224, 618);
+            button7.Location = new Point(224, 599);
             button7.Name = "button7";
-            button7.Size = new Size(126, 39);
+            button7.Size = new Size(126, 28);
             button7.TabIndex = 20;
             button7.Text = "Descargar PDF";
             button7.UseVisualStyleBackColor = true;
