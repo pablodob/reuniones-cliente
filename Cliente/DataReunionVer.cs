@@ -35,7 +35,7 @@ namespace Cliente
             InitializeComponent();
             this.usuarioId = usuarioId;
             reunion = reunionAModificar;
-            
+
             label1.Text = reunionAModificar.Titulo;
             label3.Text = Convert.ToString(reunionAModificar.Id);
             label6.Text = reunionAModificar.Estado;
@@ -49,6 +49,10 @@ namespace Cliente
             textBox2.Text = reunionAModificar.Minuta;
             label9.Text = reunionAModificar.Temas;
             label10.Text = reunionAModificar.FechaHora.ToString();
+            if (reunionAModificar.Coordinador != null && reunionAModificar.Coordinador.Nombre != null)
+            {
+                label15.Text = reunionAModificar.Coordinador.Nombre;
+            }
 
             dataGridView2.AutoGenerateColumns = false;
             dataGridView2.Columns.Add("Titulo", "Titulo");
@@ -257,5 +261,6 @@ namespace Cliente
                 MessageBox.Show("La reunión debe tener minuta para emitir el informe.");
             }
         }
+
     }
 }
