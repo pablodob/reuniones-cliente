@@ -101,7 +101,7 @@ namespace Cliente
             {
                 Reunion a = reunion;
                 a.Minuta = textBox2.Text;
-                reunion.Estado = label6.Text; //
+                a.Estado = label6.Text; //
                 await ReunionNegocio.Update(a);
             }
 
