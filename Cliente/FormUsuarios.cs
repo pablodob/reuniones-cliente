@@ -13,10 +13,10 @@ namespace Cliente
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
-            dataGridView1.Columns.Add("Id", "Id");
+            dataGridView1.Columns.Add("Role", "Role");
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
-            dataGridView1.Columns["Id"].DataPropertyName = "Id";
+            dataGridView1.Columns["Role"].DataPropertyName = "Role";
 
         }
 
