@@ -168,8 +168,9 @@ namespace Cliente
             if (dateTimePicker1.Value <= DateTime.Now)
             {
                 MessageBox.Show("No puede crearse o editarse una reunion con fecha en el pasado");
+                faltanDatos = true;
             }
-            else
+            if (faltanDatos == false)
             {
                 if (button1.Text == "Editar")
                 {
