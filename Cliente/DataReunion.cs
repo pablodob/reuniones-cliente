@@ -163,11 +163,11 @@ namespace Cliente
 
             if (faltanDatos)
             {
-                MessageBox.Show("Faltan datos obligatorios");
+                MessageBox.Show("Faltan datos obligatorios", "Error", MessageBoxButtons.OK);
             }
             if (dateTimePicker1.Value <= DateTime.Now)
             {
-                MessageBox.Show("No puede crearse o editarse una reunion con fecha en el pasado");
+                MessageBox.Show("No puede crearse o editarse una reunion con fecha en el pasado", "Error",MessageBoxButtons.OK);
                 faltanDatos = true;
             }
             if (faltanDatos == false)

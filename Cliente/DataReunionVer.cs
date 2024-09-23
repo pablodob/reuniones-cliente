@@ -28,6 +28,7 @@ namespace Cliente
         ReunionUsuario? invitacion;
         List<Texto> textos = new List<Texto>();
         List<Usuario> invitados = new List<Usuario>();
+        List<Usuario> invitadosAceptados = new List<Usuario>();
         Usuario? usuario;
 
         public DataReunionVer(Reunion reunionAModificar, int? usuarioId)
@@ -81,6 +82,18 @@ namespace Cliente
             if (reunionUsuario != null && reunionUsuario.Count > 0)
             {
                 usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
+            }
+
+            return usuarios;
+        }
+
+        private async Task<List<Usuario>> getAceptados(Reunion reunion)
+        {
+            List<ReunionUsuario> reunionUsuario = (List<ReunionUsuario>)await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            List<Usuario> usuarios = new List<Usuario>();
+            if (reunionUsuario != null && reunionUsuario.Count > 0)
+            {
+                usuarios = reunionUsuario.Where(ru => ru.Estado == "Aceptada").Select(ru => ru.Usuario).ToList();
             }
 
             return usuarios;
@@ -160,9 +173,13 @@ namespace Cliente
         {
             dataGridView1.DataSource = null;
             invitados = await getUsuarios(reunion);
+            invitadosAceptados = await getAceptados(reunion);
 
             dataGridView1.DataSource = invitados;
             dataGridView1.Visible = true;
+
+            dataGridView3.DataSource = invitados;
+            dataGridView3.Visible = true;
 
             textos = await TextoNegocio.GetbyReunionId(reunion.Id);
             dataGridView2.DataSource = null;
