@@ -114,7 +114,7 @@ namespace Cliente
             {
                 Reunion a = reunion;
                 a.Minuta = textBox2.Text;
-                a.Estado = label6.Text; //
+                a.Estado = label6.Text;
                 await ReunionNegocio.Update(a);
             }
 
@@ -172,13 +172,14 @@ namespace Cliente
         private async void DataReunionVer_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
+            dataGridView3.DataSource = null;
             invitados = await getUsuarios(reunion);
             invitadosAceptados = await getAceptados(reunion);
 
             dataGridView1.DataSource = invitados;
             dataGridView1.Visible = true;
 
-            dataGridView3.DataSource = invitados;
+            dataGridView3.DataSource = invitadosAceptados;
             dataGridView3.Visible = true;
 
             textos = await TextoNegocio.GetbyReunionId(reunion.Id);
