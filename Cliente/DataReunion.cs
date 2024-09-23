@@ -138,6 +138,7 @@ namespace Cliente
             label1.ForeColor = Color.Black;
             label7.ForeColor = Color.Black;
             label8.ForeColor = Color.Black;
+            label2.ForeColor = Color.Black;
             bool faltanDatos = false;
             if (textBox1.Text == "")
             {
@@ -152,6 +153,11 @@ namespace Cliente
             if (dataGridView1.Rows.Count == 0)
             {
                 label7.ForeColor = Color.Red;
+                faltanDatos = true;
+            }
+            if (comboBox3.SelectedIndex == -1)
+            {
+                label2.ForeColor = Color.Red;
                 faltanDatos = true;
             }
 
