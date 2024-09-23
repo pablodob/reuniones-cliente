@@ -39,6 +39,7 @@ namespace Cliente
             label1.Text = reunionAModificar.Titulo;
             label3.Text = Convert.ToString(reunionAModificar.Id);
             label6.Text = reunionAModificar.Estado;
+
             dataGridView1.AutoGenerateColumns = false;
             dataGridView1.Columns.Add("Nombre", "Nombre");
             dataGridView1.Columns.Add("NombreUsuario", "Usuario");
@@ -46,6 +47,7 @@ namespace Cliente
             dataGridView1.Columns["Nombre"].DataPropertyName = "Nombre";
             dataGridView1.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
             dataGridView1.Columns["Id"].DataPropertyName = "Id";
+
             textBox2.Text = reunionAModificar.Minuta;
             label9.Text = reunionAModificar.Temas;
             label10.Text = reunionAModificar.FechaHora.ToString();
@@ -58,6 +60,14 @@ namespace Cliente
             dataGridView2.Columns["Link"].DataPropertyName = "Link";
             dataGridView2.Columns["Obligatorio"].DataPropertyName = "Obligatorio";
             dataGridView2.DataSource = textos;
+
+            dataGridView3.AutoGenerateColumns = false;
+            dataGridView3.Columns.Add("Nombre", "Nombre");
+            dataGridView3.Columns.Add("NombreUsuario", "Usuario");
+            dataGridView3.Columns.Add("Id", "Id");
+            dataGridView3.Columns["Nombre"].DataPropertyName = "Nombre";
+            dataGridView3.Columns["NombreUsuario"].DataPropertyName = "NombreUsuario";
+            dataGridView3.Columns["Id"].DataPropertyName = "Id";
         }
 
         private async Task<List<Usuario>> getUsuarios(Reunion reunion)
@@ -87,6 +97,7 @@ namespace Cliente
             {
                 Reunion a = reunion;
                 a.Minuta = textBox2.Text;
+                reunion.Estado = label6.Text; //
                 await ReunionNegocio.Update(a);
             }
 
@@ -103,6 +114,7 @@ namespace Cliente
         {
             label6.Text = "Realizada";
             textBox2.Enabled = true;
+            
         }
 
         private async void button4_Click(object sender, EventArgs e)
@@ -254,7 +266,7 @@ namespace Cliente
             }
             else
             {
-                MessageBox.Show("La reunión debe tener minuta para emitir el informe.");
+                MessageBox.Show("La reunión debe tener minuta para emitir el informe");
             }
         }
     }
