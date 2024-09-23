@@ -83,9 +83,11 @@ namespace Cliente
             dataGridView2.Columns["Link"].DataPropertyName = "Link";
             dataGridView2.Columns["Obligatorio"].DataPropertyName = "Obligatorio";
             dataGridView2.DataSource = textos;
-
             button5.Enabled = false;
-            CargarComboBox();
+            
+            if (reunionAModificar.CoordinadorId != null) {
+                CargarComboBox((int) reunionAModificar.CoordinadorId);
+            }
             cargarTextos(reunionAModificar.Id);
             this.usuarioId = usuarioId;
         }
@@ -114,6 +116,21 @@ namespace Cliente
 
             comboBox3.DisplayMember = "NombreUsuario";
             comboBox3.ValueMember = "Id";
+        }
+
+        private async void CargarComboBox(int coorindadorId)
+        {
+            Task<IEnumerable<Usuario>> task = new Task<IEnumerable<Usuario>>(cargarTabla);
+            task.Start();
+
+            comboBox1.DataSource = await task;
+            comboBox1.DisplayMember = "Nombre";
+            comboBox1.ValueMember = "Id";
+
+            comboBox3.DisplayMember = "NombreUsuario";
+            comboBox3.ValueMember = "Id";
+
+            comboBox3.SelectedIndex = comboBox1.FindString(coorindadorId.ToString());
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -268,11 +285,6 @@ namespace Cliente
             textBox2.Text = "";
             textBox4.Text = "";
             checkBox1.Checked = false;
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

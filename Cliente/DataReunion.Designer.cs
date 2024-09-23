@@ -237,7 +237,6 @@
             checkBox1.TabIndex = 12;
             checkBox1.Text = "Obligatorio";
             checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // label6
             // 
