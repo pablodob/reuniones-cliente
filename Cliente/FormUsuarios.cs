@@ -35,6 +35,7 @@ namespace Cliente
                 Usuario u = usuarios[filaSeleccionada];
                 if (u.Role == 1)
                 {
+                    u.Password = null;
                     u.Role = 0;
                     await UsuarioNegocio.Update(u);
                     button1_Click(sender, e);
@@ -75,6 +76,7 @@ namespace Cliente
                 Usuario u = usuarios[filaSeleccionada];
                 if (u.Role == 0 && u.Id != myUser.Id)
                 {
+                    u.Password = null;
                     u.Role = 1;
                     await UsuarioNegocio.Update(u);
                     button1_Click(sender, e);
