@@ -59,9 +59,9 @@
             label14 = new Label();
             label15 = new Label();
             panel4 = new Panel();
+            label16 = new Label();
             dataGridView3 = new DataGridView();
             reunionUsuarioBindingSource = new BindingSource(components);
-            label16 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel2.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(61, 714);
+            button1.Location = new Point(71, 724);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
@@ -84,7 +84,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(421, 714);
+            button2.Location = new Point(421, 724);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
             button2.TabIndex = 1;
@@ -342,6 +342,15 @@
             panel4.Size = new Size(551, 102);
             panel4.TabIndex = 23;
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(15, 7);
+            label16.Name = "label16";
+            label16.Size = new Size(123, 15);
+            label16.TabIndex = 26;
+            label16.Text = "Personas confirmadas";
+            // 
             // dataGridView3
             // 
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -353,15 +362,6 @@
             // reunionUsuarioBindingSource
             // 
             reunionUsuarioBindingSource.DataSource = typeof(Entidades.ReunionUsuario);
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Location = new Point(15, 7);
-            label16.Name = "label16";
-            label16.Size = new Size(123, 15);
-            label16.TabIndex = 26;
-            label16.Text = "Personas confirmadas";
             // 
             // DataReunionVer
             // 
