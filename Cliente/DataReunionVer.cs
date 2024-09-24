@@ -43,6 +43,10 @@ namespace Cliente
             textBox2.Text = reunionAModificar.Minuta;
             label9.Text = reunionAModificar.Temas;
             label10.Text = reunionAModificar.FechaHora.ToString();
+            if (reunionAModificar.Coordinador != null)
+            {
+                label14.Text = reunionAModificar.Coordinador.Nombre;
+            }
             textBox2.Enabled = false;
 
         }
