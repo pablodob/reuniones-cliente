@@ -186,8 +186,7 @@ namespace Cliente
         private async void DataReunion_Load(object sender, EventArgs e)
         {
             comboBox3.DataSource = null;
-            comboBox3.DataSource = invitados;
-            
+
             dataGridView1.Visible = true;
             dataGridView1.DataSource = null;
             
@@ -195,13 +194,17 @@ namespace Cliente
             {
                 List<Usuario>? usuarios = await getUsuarios(reunion);
                 dataGridView1.DataSource = usuarios;
+                
+                comboBox3.DataSource = usuarios;
                 comboBox3.SelectedItem = reunion.CoordinadorId;
             }
         }
 
+
         private async Task<List<Usuario>>? getUsuarios(Reunion reunion)
         {
             var reunionUsuario = await ReunionUsuarioNegocio.GetbyReunion(reunion.Id);
+            oldInvitaciones = reunionUsuario.ToList();
             var usuarios = reunionUsuario.Select(ru => ru.Usuario).ToList();
 
             return usuarios;
