@@ -114,6 +114,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(414, 187);
+            ControlBox = false;
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox3);
@@ -122,6 +123,7 @@
             Controls.Add(label2);
             Controls.Add(textBox1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "Password";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Cambio de contraseña";

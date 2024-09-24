@@ -114,6 +114,7 @@
             Controls.Add(textBox1);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gestor de Reuniones";
