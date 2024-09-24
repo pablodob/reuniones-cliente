@@ -63,6 +63,7 @@ namespace Cliente
         {
             Reunion a = reunion;
             a.Minuta = textBox2.Text;
+            a.Estado = label6.Text;
             await ReunionNegocio.Update(a);
 
             Dispose();
@@ -83,9 +84,19 @@ namespace Cliente
             textBox2.Enabled = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
+        private async void button4_Click(object sender, EventArgs e)
+       /* {
             label6.Text = "Cancelada";
+        }*/
+        {
+            DialogResult result = MessageBox.Show("¿Desea cancelar la reunión? Esta acción es irreversible.", "Confirmación", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                reunion.Estado = "Cancelada";
+                await ReunionNegocio.Update(reunion);
+                Dispose();
+            }
+
         }
 
         private async void button5_Click(object sender, EventArgs e)

@@ -53,7 +53,7 @@
             button1.Location = new Point(65, 553);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
-            button1.TabIndex = 0;
+            button1.TabIndex = 13;
             button1.Text = "Aceptar";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
@@ -63,7 +63,7 @@
             button2.Location = new Point(180, 553);
             button2.Name = "button2";
             button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
+            button2.TabIndex = 14;
             button2.Text = "Cancelar";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
@@ -74,7 +74,7 @@
             label1.Location = new Point(25, 24);
             label1.Name = "label1";
             label1.Size = new Size(37, 15);
-            label1.TabIndex = 2;
+            label1.TabIndex = 1;
             label1.Text = "Titulo";
             // 
             // textBox1
@@ -82,7 +82,7 @@
             textBox1.Location = new Point(118, 21);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(180, 23);
-            textBox1.TabIndex = 4;
+            textBox1.TabIndex = 2;
             // 
             // label3
             // 
@@ -101,7 +101,7 @@
             dateTimePicker1.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(302, 23);
-            dateTimePicker1.TabIndex = 6;
+            dateTimePicker1.TabIndex = 4;
             dateTimePicker1.Value = new DateTime(2024, 7, 29, 18, 14, 56, 0);
             // 
             // label4
@@ -110,7 +110,7 @@
             label4.Location = new Point(24, 62);
             label4.Name = "label4";
             label4.Size = new Size(101, 15);
-            label4.TabIndex = 7;
+            label4.TabIndex = 3;
             label4.Text = "Fecha a realizarse:";
             // 
             // comboBox1
@@ -119,7 +119,7 @@
             comboBox1.Location = new Point(13, 13);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(169, 23);
-            comboBox1.TabIndex = 11;
+            comboBox1.TabIndex = 8;
             // 
             // dataGridView1
             // 
@@ -127,7 +127,7 @@
             dataGridView1.Location = new Point(13, 54);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(273, 232);
-            dataGridView1.TabIndex = 12;
+            dataGridView1.TabIndex = 10;
             // 
             // panel2
             // 
@@ -137,14 +137,14 @@
             panel2.Location = new Point(20, 196);
             panel2.Name = "panel2";
             panel2.Size = new Size(295, 301);
-            panel2.TabIndex = 13;
+            panel2.TabIndex = 7;
             // 
             // button5
             // 
             button5.Location = new Point(198, 13);
             button5.Name = "button5";
             button5.Size = new Size(88, 23);
-            button5.TabIndex = 0;
+            button5.TabIndex = 9;
             button5.Text = "Invitar";
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
@@ -155,7 +155,7 @@
             label8.Location = new Point(24, 125);
             label8.Name = "label8";
             label8.Size = new Size(83, 15);
-            label8.TabIndex = 13;
+            label8.TabIndex = 5;
             label8.Text = "Temas a tratar:";
             // 
             // textBox3
@@ -164,7 +164,7 @@
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(237, 36);
-            textBox3.TabIndex = 14;
+            textBox3.TabIndex = 6;
             // 
             // label2
             // 
@@ -172,7 +172,7 @@
             label2.Location = new Point(24, 512);
             label2.Name = "label2";
             label2.Size = new Size(77, 15);
-            label2.TabIndex = 15;
+            label2.TabIndex = 11;
             label2.Text = "Coordinador:";
             // 
             // comboBox3
@@ -181,7 +181,7 @@
             comboBox3.Location = new Point(111, 509);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(195, 23);
-            comboBox3.TabIndex = 13;
+            comboBox3.TabIndex = 12;
             // 
             // DataReunion
             // 
